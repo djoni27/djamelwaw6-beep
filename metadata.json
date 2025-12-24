@@ -1,0 +1,7 @@
+{
+  "name": "Copy of Platinum Store Pro",
+  "description": "منصة تجارة إلكترونية متقدمة وقابلة للتخصيص مع لوحة تحكم احترافية ونظام دفع متكامل. قم بإدارة المنتجات والتصميم والطلبات بكل سهولة.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

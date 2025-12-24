@@ -1,0 +1,94 @@
+<div class="min-h-screen bg-cover bg-center flex items-center justify-center p-4" 
+     style="background-image: url('https://picsum.photos/seed/store-bg/1920/1080?grayscale&blur=2');">
+  <div class="absolute inset-0 bg-slate-900/70 backdrop-blur-sm"></div>
+  
+  <div class="relative w-full max-w-md bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/20 text-white p-8 animate-fade-in-up">
+    
+    <div class="text-center mb-8">
+      <img src="https://via.placeholder.com/150?text=Logo" alt="Store Logo" class="mx-auto h-20 w-auto bg-white/20 p-2 rounded-2xl mb-4">
+      <h1 class="text-3xl font-black">{{ 'login.storeName' | translate }}</h1>
+      <p class="text-slate-300 mt-1">{{ 'login.subtitle' | translate }}</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="space-y-4">
+      <div>
+        <label for="email" class="block mb-2 text-sm font-bold text-slate-300">{{ 'login.emailLabel' | translate }}</label>
+        <div class="relative">
+          <input 
+            type="email" 
+            id="email" 
+            formControlName="email"
+            (input)="error.set(false)"
+            placeholder="your@email.com" 
+            class="w-full bg-white/10 border-2 rounded-xl py-3 px-4 focus:outline-none focus:border-blue-400 transition text-white placeholder:text-slate-400"
+            [class.border-white/20]="loginForm.get('email')?.valid || !loginForm.get('email')?.touched"
+            [class.border-red-500]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+            >
+            <i class="fa-solid fa-envelope absolute end-4 top-1/2 -translate-y-1/2 text-slate-300"></i>
+        </div>
+      </div>
+      
+      <div>
+        <label for="password" class="block mb-2 text-sm font-bold text-slate-300">{{ 'login.passwordLabel' | translate }}</label>
+        <div class="relative">
+          <input 
+            type="password" 
+            id="password" 
+            formControlName="password"
+            (input)="error.set(false)"
+            placeholder="••••••••" 
+            class="w-full bg-white/10 border-2 rounded-xl py-3 px-4 focus:outline-none focus:border-blue-400 transition text-white placeholder:text-slate-400"
+            [class.border-red-500]="error() || (loginForm.get('password')?.invalid && loginForm.get('password')?.touched)"
+            [class.border-white/20]="!error() && (loginForm.get('password')?.valid || !loginForm.get('password')?.touched)">
+            <i class="fa-solid fa-lock absolute end-4 top-1/2 -translate-y-1/2 text-slate-300"></i>
+        </div>
+        @if (error()) {
+          <p class="text-red-400 text-sm mt-2 animate-shake">{{ 'login.passwordError' | translate }}</p>
+        }
+      </div>
+      
+      <button 
+        type="submit"
+        class="w-full bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl py-3 font-bold text-lg shadow-lg hover:scale-105 active:scale-100 transition-transform duration-200">
+        {{ 'login.loginButton' | translate }}
+      </button>
+    </form>
+    
+    <div class="mt-6 text-center">
+      <label for="language-select" class="block mb-2 text-sm font-bold text-slate-300">{{ 'login.changeLanguage' | translate }}</label>
+      <div class="relative inline-block">
+        <select 
+          id="language-select" 
+          (change)="changeLanguage($event)" 
+          [value]="languageService.language()"
+          class="appearance-none w-full bg-white/10 border-2 border-white/20 rounded-xl py-2 px-4 pr-8 focus:outline-none focus:border-blue-400 transition text-white">
+          <option value="ar">{{ 'languages.ar' | translate }}</option>
+          <option value="en">{{ 'languages.en' | translate }}</option>
+          <option value="fr">{{ 'languages.fr' | translate }}</option>
+        </select>
+        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-300">
+          <i class="fa-solid fa-chevron-down text-xs"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="my-6 flex items-center">
+      <div class="flex-grow border-t border-slate-500"></div>
+      <span class="mx-4 flex-shrink text-slate-300 text-sm">{{ 'login.socialSeparator' | translate }}</span>
+      <div class="flex-grow border-t border-slate-500"></div>
+    </div>
+
+    <div class="flex items-center justify-center gap-4">
+      <button class="w-14 h-14 bg-white/20 border-2 border-white/30 rounded-2xl flex items-center justify-center text-2xl hover:bg-white/30 transition" aria-label="Login with Google">
+        <i class="fab fa-google"></i>
+      </button>
+      <button class="w-14 h-14 bg-white/20 border-2 border-white/30 rounded-2xl flex items-center justify-center text-2xl hover:bg-white/30 transition" aria-label="Login with Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </button>
+      <button class="w-14 h-14 bg-white/20 border-2 border-white/30 rounded-2xl flex items-center justify-center text-2xl hover:bg-white/30 transition" aria-label="Login with Apple">
+        <i class="fab fa-apple"></i>
+      </button>
+    </div>
+
+  </div>
+</div>
