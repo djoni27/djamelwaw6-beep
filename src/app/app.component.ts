@@ -17,7 +17,11 @@ import { TranslatePipe } from './translate.pipe';
 
     <!-- Toast Notification -->
     @if (toastState().visible) {
-      <div class="fixed top-5 z-[200] flex items-center gap-4 bg-white rounded-2xl shadow-2xl p-4 border border-slate-200 animate-slide-in-down" [dir]="languageService.language() === 'ar' ? 'rtl' : 'ltr'">
+      <div 
+        class="fixed top-5 z-[200] flex items-center gap-4 bg-white rounded-2xl shadow-2xl p-4 border border-slate-200 animate-slide-in-down"
+        [dir]="languageService.language() === 'ar' ? 'rtl' : 'ltr'"
+        [class.right-5]="languageService.language() !== 'ar'"
+        [class.left-5]="languageService.language() === 'ar'">
         <img [src]="settings().logo" class="h-12 w-12 object-contain bg-slate-100 rounded-lg p-1 animate-pulse-once">
         <div>
             <p class="font-bold text-slate-800">{{ toastState().message | translate }}</p>

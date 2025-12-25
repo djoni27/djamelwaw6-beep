@@ -239,8 +239,7 @@
             "variantPromptError": "Veuillez d'abord entrer le nom du produit et la couleur de la variante.",
             "variantGenerationError": "Échec de la génération de l'image. Veuillez réessayer.",
             "generateImage": "Générer l'image",
-            "editImage": "Modifier l'image",
-            "imageProcessingError": "Une erreur est survenue lors du traitement de l'image."
+            "editImage": "Modifier l'image"
         },
         "categories": {
             "title": "Gestion des catégories",
@@ -293,11 +292,10 @@
             "toastSaved": "Paramètres de notification enregistrés"
         },
         "camera": {
-            "modalTitle": "Prendre une photo",
+            "title": "Prendre une photo",
             "capture": "Capturer",
             "cancel": "Annuler",
-            "error": "Impossible d'accéder à la caméra. Veuillez vous assurer que la permission est accordée.",
-            "notAvailable": "L'API de la caméra n'est pas disponible."
+            "error": "Impossible d'accéder à la caméra. Veuillez vous assurer que la permission est accordée."
         }
     },
     "toast": {

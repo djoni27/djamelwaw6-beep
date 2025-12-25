@@ -239,7 +239,8 @@
             "variantPromptError": "Please enter the product name and variant color first.",
             "variantGenerationError": "Failed to generate image. Please try again.",
             "generateImage": "Generate Image",
-            "editImage": "Edit Image"
+            "editImage": "Edit Image",
+            "imageProcessingError": "An error occurred while processing the image."
         },
         "categories": {
             "title": "Category Management",
@@ -295,7 +296,8 @@
             "modalTitle": "Capture Image",
             "capture": "Capture",
             "cancel": "Cancel",
-            "error": "Could not access camera. Please ensure permission is granted."
+            "error": "Could not access camera. Please ensure permission is granted.",
+            "notAvailable": "Camera API is not available."
         }
     },
     "toast": {
