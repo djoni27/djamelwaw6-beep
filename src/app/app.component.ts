@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, effect, inject, Renderer2 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { DOCUMENT, CommonModule } from '@angular/common';
+import { DOCUMENT, CommonModule, NgOptimizedImage } from '@angular/common';
 import { SettingsService } from './settings.service';
 import { LanguageService } from './language.service';
 import { TranslatePipe } from './translate.pipe';
@@ -22,7 +22,7 @@ import { TranslatePipe } from './translate.pipe';
         [dir]="languageService.language() === 'ar' ? 'rtl' : 'ltr'"
         [class.right-5]="languageService.language() !== 'ar'"
         [class.left-5]="languageService.language() === 'ar'">
-        <img [src]="settings().logo" class="h-12 w-12 object-contain bg-slate-100 rounded-lg p-1 animate-pulse-once">
+        <img [ngSrc]="settings().logo" width="48" height="48" alt="Store Logo" class="h-12 w-12 object-contain bg-slate-100 rounded-lg p-1 animate-pulse-once">
         <div>
             <p class="font-bold text-slate-800">{{ toastState().message | translate }}</p>
             <p class="text-sm text-slate-500">{{ 'toast.success' | translate }}</p>
@@ -30,7 +30,7 @@ import { TranslatePipe } from './translate.pipe';
       </div>
     }
   `,
-  imports: [RouterOutlet, CommonModule, TranslatePipe],
+  imports: [RouterOutlet, CommonModule, TranslatePipe, NgOptimizedImage],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, signal, OnInit, computed, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { SettingsService } from '../../settings.service';
 import { ProductService } from '../../product.service';
@@ -11,7 +11,7 @@ import { LanguageService } from '../../language.service';
 
 @Component({
   selector: 'app-admin',
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, TranslatePipe],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, TranslatePipe, NgOptimizedImage],
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,

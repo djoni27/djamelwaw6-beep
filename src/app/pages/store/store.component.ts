@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { Product } from '../../types';
 import { CartService } from '../../cart.service';
@@ -10,7 +10,7 @@ import { LanguageService } from '../../language.service';
 
 @Component({
   selector: 'app-store',
-  imports: [CommonModule, RouterModule, TranslatePipe],
+  imports: [CommonModule, RouterModule, TranslatePipe, NgOptimizedImage],
   templateUrl: './store.component.html',
   styleUrls: ['./store.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -169,7 +169,7 @@
         <div class="space-y-4 max-h-64 overflow-y-auto pr-2 print:max-h-none">
             @for(item of cart(); track item.id) {
             <div class="flex items-center gap-4">
-                <img [src]="item.image" class="w-16 h-16 rounded-lg object-cover">
+                <img [ngSrc]="item.image" [alt]="item.name" width="64" height="64" class="w-16 h-16 rounded-lg object-cover">
                 <div class="flex-1">
                     <p class="font-bold text-slate-800">{{item.name}}</p>
                     <p class="text-sm text-slate-600">{{item.quantity}} x {{item.price.toLocaleString()}}</p>

@@ -90,7 +90,7 @@
                             <div>
                                 <label class="font-bold text-sm text-slate-600">{{ 'admin.settings.logo' | translate }}</label>
                                 <div class="flex items-start gap-4 mt-1">
-                                    <img [src]="settingsForm.get('logo')?.value || 'https://via.placeholder.com/100'" class="w-20 h-20 object-contain bg-white rounded-lg p-1 border border-slate-200">
+                                    <img [ngSrc]="settingsForm.get('logo')?.value || 'https://via.placeholder.com/100'" alt="Store logo preview" width="80" height="80" class="w-20 h-20 object-contain bg-white rounded-lg p-1 border border-slate-200">
                                     <div class="flex-1">
                                         <div class="flex items-center gap-2">
                                             <label class="p-2 h-10 w-10 bg-slate-200 text-slate-700 rounded-lg hover:bg-slate-300 cursor-pointer text-center" title="تحميل صورة">
@@ -275,7 +275,7 @@
                     <label class="font-bold text-sm text-slate-600 mb-2 block">{{ 'admin.products.mainImage' | translate }}</label>
                     <div class="flex items-start gap-4">
                     @if(productForm.controls.image.value) {
-                        <img [src]="productForm.controls.image.value" class="w-24 h-24 object-cover rounded-lg border bg-white p-1">
+                        <img [ngSrc]="productForm.controls.image.value" alt="Main product image preview" width="96" height="96" class="w-24 h-24 object-cover rounded-lg border bg-white p-1">
                     }
                     <div class="flex-1">
                         <div class="flex items-center gap-2">
@@ -323,7 +323,7 @@
                             <div class="flex items-center gap-4">
                                 <div class="w-8 h-8 rounded-md border" [style.background-color]="variantGroup.get('color')?.value"></div>
                                 <div class="relative">
-                                    <img [src]="variantGroup.get('image')?.value || 'https://via.placeholder.com/100?text=...'" class="w-12 h-12 object-cover rounded-md">
+                                    <img [ngSrc]="variantGroup.get('image')?.value || 'https://via.placeholder.com/100?text=...'" alt="Variant image preview" width="48" height="48" class="w-12 h-12 object-cover rounded-md">
                                     @if (generatingImageForVariantIndex() === i) {
                                     <div class="absolute inset-0 bg-black/50 flex items-center justify-center rounded-md">
                                         <i class="fa-solid fa-spinner fa-spin text-white"></i>
@@ -385,7 +385,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     @for (p of products(); track p.id) {
                     <div class="flex items-center gap-4 p-3 bg-white rounded-lg shadow-sm border">
-                        <img [src]="p.image" class="w-16 h-16 rounded-md object-cover flex-shrink-0">
+                        <img [ngSrc]="p.image" [alt]="p.name" width="64" height="64" class="w-16 h-16 rounded-md object-cover flex-shrink-0">
                         <div class="flex-1 min-w-0">
                         <p class="font-bold truncate text-slate-800">{{ p.name }}</p>
                         <p class="text-sm text-slate-500">{{ p.category }} - {{ p.price.toLocaleString() }} د.ج</p>

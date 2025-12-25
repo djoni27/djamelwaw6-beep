@@ -3,7 +3,7 @@
   <nav class="sticky top-0 z-40 backdrop-blur-xl bg-white/20 border-b border-white/10 shadow-sm px-4 sm:px-6 py-3 flex justify-between items-center">
     <div class="flex items-center gap-4">
       @if(settings().logo) {
-      <img [src]="settings().logo" width="150" height="48" alt="Store Logo" class="h-12 object-contain drop-shadow-lg" [class]="'logo-animate-' + settings().logoAnimation">
+      <img [ngSrc]="settings().logo" width="150" height="48" alt="Store Logo" class="h-12 object-contain drop-shadow-lg" [class]="'logo-animate-' + settings().logoAnimation">
       } @else {
       <h1 class="text-2xl font-black tracking-tighter" [style.color]="'white'">{{ settings().storeName }}</h1>
       }
@@ -53,9 +53,10 @@
            [style.border-radius]="settings().cardBorderRadius"
            [style.box-shadow]="settings().cardShadow">
         <div class="h-48 sm:h-64 overflow-hidden relative bg-slate-200">
-          <img [src]="hoveredProductImage()[p.id] || p.image" 
+          <img [ngSrc]="hoveredProductImage()[p.id] || p.image" 
                [alt]="p.name"
                width="400" height="400"
+               [priority]="i < 4"
                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
 
           @if (p.variants && p.variants.length > 0) {
@@ -96,7 +97,7 @@
         </button>
         <div class="flex flex-col md:flex-row">
             <div class="md:w-1/2 h-64 md:h-auto relative bg-slate-200">
-                <img [src]="product.image" [alt]="product.name" width="400" height="400" class="w-full h-full object-cover">
+                <img [ngSrc]="product.image" [alt]="product.name" width="400" height="400" class="w-full h-full object-cover">
             </div>
             <div class="md:w-1/2 p-8 flex flex-col">
                 <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs font-bold uppercase self-start mb-4">{{ product.category }}</span>
@@ -181,7 +182,7 @@
                   @for(item of cart(); track item.id) {
                       <div class="flex items-center gap-4 bg-white/20 p-3 rounded-2xl shadow-sm border border-white/10">
                           <div class="w-20 h-20 rounded-xl bg-white/10 flex-shrink-0">
-                            <img [src]="item.image" [alt]="item.name" width="80" height="80" class="w-20 h-20 rounded-xl object-cover">
+                            <img [ngSrc]="item.image" [alt]="item.name" width="80" height="80" class="w-20 h-20 rounded-xl object-cover">
                           </div>
                           <div class="flex-1">
                               <h4 class="font-bold text-md text-white">{{item.name}} (x{{item.quantity}})</h4>
