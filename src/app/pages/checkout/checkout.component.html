@@ -5,17 +5,17 @@
     <div class="flex items-center justify-center mb-8 print:hidden">
       <div class="flex items-center" [class.opacity-50]="checkoutStep() !== 'info'">
         <div class="w-10 h-10 rounded-full flex items-center justify-center text-white" [class.bg-blue-600]="checkoutStep() === 'info'" [class.bg-slate-400]="checkoutStep() !== 'info'">1</div>
-        <span class="font-bold ml-2 text-white drop-shadow-md hidden sm:inline" [class.text-blue-200]="checkoutStep() === 'info'">{{ 'checkout.stepInfo' | translate }}</span>
+        <span class="font-bold ml-2 text-white drop-shadow-md hidden sm:inline" [class.text-blue-200]="checkoutStep() === 'info'">المعلومات</span>
       </div>
       <div class="flex-1 h-0.5 mx-4" [class.bg-slate-500]="checkoutStep() !== 'info'" [class.bg-blue-400]="checkoutStep() === 'info'"></div>
       <div class="flex items-center" [class.opacity-50]="checkoutStep() !== 'payment'">
         <div class="w-10 h-10 rounded-full flex items-center justify-center text-white" [class.bg-blue-600]="checkoutStep() === 'payment'" [class.bg-slate-400]="checkoutStep() !== 'payment'">2</div>
-        <span class="font-bold ml-2 text-white drop-shadow-md hidden sm:inline" [class.text-blue-200]="checkoutStep() === 'payment'">{{ 'checkout.stepPayment' | translate }}</span>
+        <span class="font-bold ml-2 text-white drop-shadow-md hidden sm:inline" [class.text-blue-200]="checkoutStep() === 'payment'">الدفع</span>
       </div>
       <div class="flex-1 h-0.5 mx-4" [class.bg-blue-400]="checkoutStep() === 'confirmation'" [class.bg-slate-500]="checkoutStep() !== 'confirmation'"></div>
       <div class="flex items-center" [class.opacity-50]="checkoutStep() !== 'confirmation'">
         <div class="w-10 h-10 rounded-full flex items-center justify-center text-white" [class.bg-blue-600]="checkoutStep() === 'confirmation'" [class.bg-slate-400]="checkoutStep() !== 'confirmation'">3</div>
-        <span class="font-bold ml-2 text-white drop-shadow-md hidden sm:inline" [class.text-blue-200]="checkoutStep() === 'confirmation'">{{ 'checkout.stepConfirm' | translate }}</span>
+        <span class="font-bold ml-2 text-white drop-shadow-md hidden sm:inline" [class.text-blue-200]="checkoutStep() === 'confirmation'">التأكيد</span>
       </div>
     </div>
 
@@ -26,52 +26,52 @@
         @if (checkoutStep() === 'info') {
           <div class="animate-fade-in">
             <div class="flex justify-between items-center mb-6">
-              <h2 class="text-2xl font-black text-slate-800">{{ 'checkout.deliveryInfo' | translate }}</h2>
+              <h2 class="text-2xl font-black text-slate-800">معلومات التوصيل</h2>
               <a routerLink="/store" class="text-sm font-bold text-blue-600 hover:underline flex items-center gap-2">
-                <span>{{ 'checkout.backToStore' | translate }}</span>
+                <span>العودة للمتجر</span>
                 <i class="fa-solid fa-arrow-left"></i>
               </a>
             </div>
             <form [formGroup]="customerForm" class="space-y-6">
               <div class="grid grid-cols-1 sm:grid-cols-[140px_1fr] items-center gap-x-4 gap-y-4">
                   
-                  <label class="font-bold text-sm bg-slate-800 text-white text-center py-2 rounded-lg">{{ 'checkout.form.name' | translate }}</label>
-                  <input formControlName="name" class="w-full p-3 border border-slate-200 bg-slate-100 rounded-lg text-black focus:bg-white focus:border-blue-500 outline-none transition" [placeholder]="'checkout.form.namePlaceholder' | translate">
+                  <label class="font-bold text-sm bg-slate-800 text-white text-center py-2 rounded-lg">الاسم الكامل:</label>
+                  <input formControlName="name" class="w-full p-3 border border-slate-200 bg-slate-100 rounded-lg text-black focus:bg-white focus:border-blue-500 outline-none transition" placeholder="مثال: محمد عبدالله">
                   
-                  <label class="font-bold text-sm bg-slate-800 text-white text-center py-2 rounded-lg">{{ 'checkout.form.phone' | translate }}</label>
-                  <input formControlName="phone" class="w-full p-3 border border-slate-200 bg-slate-100 rounded-lg text-black focus:bg-white focus:border-blue-500 outline-none transition" [placeholder]="'checkout.form.phonePlaceholder' | translate">
+                  <label class="font-bold text-sm bg-slate-800 text-white text-center py-2 rounded-lg">رقم الهاتف:</label>
+                  <input formControlName="phone" class="w-full p-3 border border-slate-200 bg-slate-100 rounded-lg text-black focus:bg-white focus:border-blue-500 outline-none transition" placeholder="0XXXXXXXXX">
 
-                  <label class="font-bold text-sm bg-slate-800 text-white text-center py-2 rounded-lg">{{ 'checkout.form.state' | translate }}</label>
+                  <label class="font-bold text-sm bg-slate-800 text-white text-center py-2 rounded-lg">الولاية:</label>
                   <select formControlName="wilaya" class="w-full p-3 border border-slate-200 bg-slate-100 rounded-lg text-black focus:bg-white focus:border-blue-500 outline-none transition">
-                    <option value="" disabled>{{ 'checkout.form.statePlaceholder' | translate }}</option>
+                    <option value="" disabled>اختر ولايتك</option>
                     @for(w of wilayas; track w.name) {
                       <option [value]="w.name">{{ w.name }}</option>
                     }
                   </select>
 
-                  <label class="font-bold text-sm bg-slate-800 text-white text-center py-2 rounded-lg">{{ 'checkout.form.city' | translate }}</label>
-                  <input formControlName="city" class="w-full p-3 border border-slate-200 bg-slate-100 rounded-lg text-black focus:bg-white focus:border-blue-500 outline-none transition" [placeholder]="'checkout.form.cityPlaceholder' | translate">
+                  <label class="font-bold text-sm bg-slate-800 text-white text-center py-2 rounded-lg">البلدية:</label>
+                  <input formControlName="city" class="w-full p-3 border border-slate-200 bg-slate-100 rounded-lg text-black focus:bg-white focus:border-blue-500 outline-none transition" placeholder="بلدية السكن">
                   
-                  <label class="font-bold text-sm bg-slate-800 text-white text-center py-2 rounded-lg">{{ 'checkout.form.deliveryCompany' | translate }}</label>
+                  <label class="font-bold text-sm bg-slate-800 text-white text-center py-2 rounded-lg">شركة التوصيل:</label>
                   <select formControlName="deliveryCompany" class="w-full p-3 border border-slate-200 bg-slate-100 rounded-lg text-black focus:bg-white focus:border-blue-500 outline-none transition">
-                    <option value="" disabled>{{ 'checkout.form.deliveryCompanyPlaceholder' | translate }}</option>
+                    <option value="" disabled>اختر شركة التوصيل</option>
                     @for(c of deliveryCompanies; track c.id) {
                       <option [value]="c.id">{{ c.name }}</option>
                     }
                   </select>
 
-                   <label class="font-bold text-sm bg-slate-800 text-white text-center py-2 rounded-lg">{{ 'checkout.form.email' | translate }}</label>
-                   <input formControlName="email" class="w-full p-3 border border-slate-200 bg-slate-100 rounded-lg text-black focus:bg-white focus:border-blue-500 outline-none transition" [placeholder]="'checkout.form.emailPlaceholder' | translate">
+                   <label class="font-bold text-sm bg-slate-800 text-white text-center py-2 rounded-lg">البريد الإلكتروني:</label>
+                   <input formControlName="email" class="w-full p-3 border border-slate-200 bg-slate-100 rounded-lg text-black focus:bg-white focus:border-blue-500 outline-none transition" placeholder="(اختياري)">
 
               </div>
 
               <div class="flex items-center mt-6">
                 <input #rememberCheckbox id="remember-me" type="checkbox" [checked]="rememberMe()" (change)="rememberMe.set(rememberCheckbox.checked)" class="w-5 h-5 text-blue-600 bg-slate-200 border-slate-300 rounded focus:ring-blue-500 focus:ring-2 cursor-pointer">
-                <label for="remember-me" class="mr-3 text-sm font-bold text-slate-800 cursor-pointer">{{ 'checkout.form.rememberMe' | translate }}</label>
+                <label for="remember-me" class="mr-3 text-sm font-bold text-slate-800 cursor-pointer">تذكرني للمرة القادمة</label>
               </div>
 
               <button (click)="goToPayment()" class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl mt-4 hover:bg-blue-700 transition">
-                {{ 'checkout.continueToPayment' | translate }}
+                المتابعة إلى الدفع
               </button>
             </form>
           </div>
@@ -80,32 +80,32 @@
         <!-- Step 2: Payment -->
         @if (checkoutStep() === 'payment') {
           <div class="animate-fade-in">
-            <h2 class="text-2xl font-black mb-6 text-slate-800">{{ 'checkout.paymentMethod' | translate }}</h2>
+            <h2 class="text-2xl font-black mb-6 text-slate-800">طريقة الدفع</h2>
             <div class="space-y-3">
               <div (click)="selectedPaymentMethod.set('cod')" class="p-4 border-2 rounded-xl cursor-pointer flex items-center gap-4 bg-white/50" [class.border-blue-600]="selectedPaymentMethod() === 'cod'">
                 <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center">
                   <i class="fa-solid fa-hand-holding-dollar text-2xl text-white"></i>
                 </div>
-                <span class="font-bold text-slate-800">{{ 'checkout.cod' | translate }}</span>
+                <span class="font-bold text-slate-800">الدفع عند الإستلام</span>
               </div>
               <div (click)="selectedPaymentMethod.set('baridi')" class="p-4 border-2 rounded-xl cursor-pointer flex items-center gap-4 bg-white/50" [class.border-blue-600]="selectedPaymentMethod() === 'baridi'">
                 <div class="w-12 h-12 rounded-full bg-yellow-500 flex items-center justify-center">
                   <i class="fa-solid fa-credit-card text-2xl text-white"></i>
                 </div>
-                <span class="font-bold text-slate-800">{{ 'checkout.baridi' | translate }}</span>
+                <span class="font-bold text-slate-800">بريدي موب</span>
               </div>
                <div (click)="selectedPaymentMethod.set('visa')" class="p-4 border-2 rounded-xl cursor-pointer flex items-center gap-4 bg-white/50" [class.border-blue-600]="selectedPaymentMethod() === 'visa'">
                 <div class="w-12 h-12 rounded-full bg-blue-800 flex items-center justify-center">
                   <i class="fa-brands fa-cc-visa text-2xl text-white"></i>
                 </div>
-                <span class="font-bold text-slate-800">{{ 'checkout.visa' | translate }}</span>
+                <span class="font-bold text-slate-800">بطاقة فيزا</span>
               </div>
             </div>
              <button (click)="confirmOrder()" class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl mt-6 hover:bg-blue-700 transition">
-                {{ 'checkout.confirmOrder' | translate }}
+                تأكيد الطلب
               </button>
               <button (click)="checkoutStep.set('info')" class="w-full text-slate-600 font-bold py-2 rounded-xl mt-2 hover:bg-white/30 transition">
-                {{ 'checkout.goBack' | translate }}
+                الرجوع
               </button>
           </div>
         }
@@ -114,41 +114,41 @@
         @if (checkoutStep() === 'confirmation' && confirmedOrder(); as order) {
           <div class="animate-fade-in">
              <div class="flex justify-between items-center mb-6 border-b pb-4">
-                 <h2 class="text-2xl font-black text-slate-800">{{ 'checkout.orderSuccess' | translate }}</h2>
+                 <h2 class="text-2xl font-black text-slate-800">تم تأكيد الطلب بنجاح</h2>
                  <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center print:hidden">
                     <i class="fa-solid fa-check text-4xl text-green-500"></i>
                 </div>
              </div>
-             <h3 class="font-bold text-lg text-slate-800 mb-2">{{ 'checkout.customerInfo' | translate }}</h3>
+             <h3 class="font-bold text-lg text-slate-800 mb-2">معلومات الزبون:</h3>
              <div class="text-slate-600 space-y-1 bg-slate-50 p-4 rounded-lg">
-                <p><strong>{{ 'checkout.customerName' | translate }}</strong> {{ order.customer.name }}</p>
-                <p><strong>{{ 'checkout.customerPhone' | translate }}</strong> {{ order.customer.phone }}</p>
-                <p><strong>{{ 'checkout.customerAddress' | translate }}</strong> {{ order.customer.wilaya }}, {{ order.customer.city }}</p>
-                <p><strong>{{ 'checkout.customerDelivery' | translate }}</strong> {{ order.deliveryCompany }}</p>
+                <p><strong>الاسم:</strong> {{ order.customer.name }}</p>
+                <p><strong>الهاتف:</strong> {{ order.customer.phone }}</p>
+                <p><strong>الولاية:</strong> {{ order.customer.wilaya }}, {{ order.customer.city }}</p>
+                <p><strong>شركة التوصيل:</strong> {{ order.deliveryCompany }}</p>
              </div>
              
              <div class="mt-8 flex flex-wrap gap-2 print:hidden">
                 <button (click)="sendNotification()" class="flex-1 bg-green-500 text-white px-4 py-3 rounded-lg font-bold hover:bg-green-600 transition">
-                    <i class="fa-solid fa-paper-plane"></i> {{ 'checkout.sendNotification' | translate }}
+                    <i class="fa-solid fa-paper-plane"></i> إرسال إشعار
                 </button>
                 <button (click)="downloadOrder()" class="bg-slate-700 text-white px-4 py-3 rounded-lg font-bold hover:bg-slate-800 transition">
-                    <i class="fa-solid fa-download"></i> {{ 'checkout.download' | translate }}
+                    <i class="fa-solid fa-download"></i> تحميل
                 </button>
                 <div class="relative">
                   <button (click)="togglePrintOptions($event)" class="bg-slate-200 text-slate-800 px-4 py-3 rounded-lg font-bold hover:bg-slate-300 transition flex items-center gap-2">
                     <i class="fa-solid fa-print"></i> 
-                    <span>{{ 'checkout.print' | translate }}</span>
+                    <span>طباعة</span>
                     <i class="fa-solid fa-caret-down text-xs"></i>
                   </button>
                   @if (showPrintOptions()) {
                     <div (click)="$event.stopPropagation()" class="absolute bottom-full right-0 mb-2 w-48 bg-white rounded-lg shadow-2xl border p-1 z-20 animate-fade-in-up-sm">
                         <button (click)="printViaWifi()" class="w-full text-right flex items-center gap-3 px-3 py-2 rounded-md hover:bg-slate-100 transition">
                             <i class="fa-solid fa-wifi w-5 text-sky-500"></i>
-                            <span>{{ 'checkout.printWifi' | translate }}</span>
+                            <span>طباعة (عادي/Wi-Fi)</span>
                         </button>
                         <button (click)="openBluetoothHelp()" class="w-full text-right flex items-center gap-3 px-3 py-2 rounded-md hover:bg-slate-100 transition">
                             <i class="fa-brands fa-bluetooth-b w-5 text-blue-600"></i>
-                            <span>{{ 'checkout.printBluetooth' | translate }}</span>
+                            <span>طباعة (بلوتوث)</span>
                         </button>
                     </div>
                   }
@@ -156,7 +156,7 @@
              </div>
              <div class="mt-4 text-center print:hidden">
                  <a routerLink="/store" class="text-blue-600 font-bold hover:underline">
-                    {{ 'checkout.newOrderLink' | translate }}
+                    العودة للمتجر أو استقبال طلب جديد
                 </a>
              </div>
           </div>
@@ -165,35 +165,35 @@
 
       <!-- Order Summary Side -->
       <div class="bg-black/10 p-8 print:bg-white">
-        <h3 class="text-xl font-black mb-6 border-b pb-4 text-slate-800">{{ 'checkout.orderSummary' | translate }}</h3>
+        <h3 class="text-xl font-black mb-6 border-b pb-4 text-slate-800">ملخص الطلب</h3>
         <div class="space-y-4 max-h-64 overflow-y-auto pr-2 print:max-h-none">
             @for(item of cart(); track item.id) {
             <div class="flex items-center gap-4">
-                <img [ngSrc]="item.image" [alt]="item.name" width="64" height="64" class="w-16 h-16 rounded-lg object-cover">
+                <img [src]="item.image" [alt]="item.name" width="64" height="64" class="w-16 h-16 rounded-lg object-cover">
                 <div class="flex-1">
                     <p class="font-bold text-slate-800">{{item.name}}</p>
                     <p class="text-sm text-slate-600">{{item.quantity}} x {{item.price.toLocaleString()}}</p>
                 </div>
-                <p class="font-bold text-slate-800">{{ (item.price * item.quantity).toLocaleString() }} {{ 'store.currency' | translate }}</p>
+                <p class="font-bold text-slate-800">{{ (item.price * item.quantity).toLocaleString() }} د.ج</p>
             </div>
             }
         </div>
         <div class="border-t pt-6 mt-6 space-y-2">
             <div class="flex justify-between text-slate-700">
-                <span>{{ 'checkout.subtotal' | translate }}</span>
-                <span class="font-bold text-slate-800">{{ subtotal().toLocaleString() }} {{ 'store.currency' | translate }}</span>
+                <span>المجموع الفرعي</span>
+                <span class="font-bold text-slate-800">{{ subtotal().toLocaleString() }} د.ج</span>
             </div>
             <div class="flex justify-between text-slate-700">
-                <span>{{ 'checkout.shipping' | translate }}</span>
-                <span class="font-bold text-slate-800">{{ shippingCost().toLocaleString() }} {{ 'store.currency' | translate }}</span>
+                <span>شحن للولاية</span>
+                <span class="font-bold text-slate-800">{{ shippingCost().toLocaleString() }} د.ج</span>
             </div>
             <div class="flex justify-between text-slate-700">
-                <span>{{ 'checkout.deliveryFee' | translate }}</span>
-                <span class="font-bold text-slate-800">{{ deliveryFee().toLocaleString() }} {{ 'store.currency' | translate }}</span>
+                <span>رسوم شركة التوصيل</span>
+                <span class="font-bold text-slate-800">{{ deliveryFee().toLocaleString() }} د.ج</span>
             </div>
             <div class="flex justify-between font-black text-xl mt-4 pt-4 border-t text-slate-800">
-                <span>{{ 'checkout.total' | translate }}</span>
-                <span>{{ total().toLocaleString() }} {{ 'store.currency' | translate }}</span>
+                <span>الإجمالي</span>
+                <span>{{ total().toLocaleString() }} د.ج</span>
             </div>
         </div>
       </div>
@@ -208,20 +208,20 @@
             <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
                 <i class="fa-brands fa-bluetooth-b text-2xl text-blue-600"></i>
             </div>
-            <h2 class="text-2xl font-black text-slate-800">{{ 'checkout.bluetoothModal.title' | translate }}</h2>
+            <h2 class="text-2xl font-black text-slate-800">الطباعة عبر بلوتوث</h2>
         </div>
-        <p class="text-slate-600 mb-4">{{ 'checkout.bluetoothModal.instructions' | translate }}</p>
+        <p class="text-slate-600 mb-4">للطباعة باستخدام طابعة بلوتوث، يرجى اتباع الخطوات التالية:</p>
         <ol class="list-decimal list-inside space-y-3 bg-slate-50 p-4 rounded-lg text-slate-700">
-            <li><strong>{{ 'checkout.bluetoothModal.step1' | translate }}</strong></li>
-            <li><strong>{{ 'checkout.bluetoothModal.step2' | translate }}</strong></li>
-            <li><strong>{{ 'checkout.bluetoothModal.step3' | translate }}</strong></li>
+            <li><strong>الخطوة 1: تأكد من أن طابعة البلوتوث مقترنة وجاهزة على جهازك (الكمبيوتر أو الهاتف).</strong></li>
+            <li><strong>الخطوة 2: انقر على زر "متابعة للطباعة" أدناه.</strong></li>
+            <li><strong>الخطوة 3: من قائمة الطابعات التي ستظهر، اختر طابعة البلوتوث الخاصة بك.</strong></li>
         </ol>
         <div class="mt-8 flex gap-2 justify-end">
           <button (click)="closeBluetoothHelp()" class="px-6 py-3 rounded-lg bg-slate-200 text-slate-800 font-bold hover:bg-slate-300 transition">
-            {{ 'checkout.bluetoothModal.cancel' | translate }}
+            إلغاء
           </button>
           <button (click)="printOrder(); closeBluetoothHelp()" class="px-6 py-3 rounded-lg bg-blue-600 text-white font-bold hover:bg-blue-700 transition">
-            {{ 'checkout.bluetoothModal.continue' | translate }}
+            متابعة للطباعة
           </button>
         </div>
       </div>

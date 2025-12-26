@@ -6,13 +6,13 @@
     
     <div class="text-center mb-8">
       <img ngSrc="https://via.placeholder.com/150?text=Logo" alt="Store Logo" width="80" height="80" class="mx-auto h-20 w-auto object-contain bg-white/20 p-2 rounded-2xl mb-4">
-      <h1 class="text-3xl font-black">{{ 'login.storeName' | translate }}</h1>
-      <p class="text-slate-300 mt-1">{{ 'login.subtitle' | translate }}</p>
+      <h1 class="text-3xl font-black">المتجر البلاتيني</h1>
+      <p class="text-slate-300 mt-1">تسجيل الدخول للمتابعة</p>
     </div>
 
     <form [formGroup]="loginForm" (ngSubmit)="login()" class="space-y-4">
       <div>
-        <label for="email" class="block mb-2 text-sm font-bold text-slate-300">{{ 'login.emailLabel' | translate }}</label>
+        <label for="email" class="block mb-2 text-sm font-bold text-slate-300">البريد الإلكتروني</label>
         <div class="relative">
           <input 
             type="email" 
@@ -29,7 +29,7 @@
       </div>
       
       <div>
-        <label for="password" class="block mb-2 text-sm font-bold text-slate-300">{{ 'login.passwordLabel' | translate }}</label>
+        <label for="password" class="block mb-2 text-sm font-bold text-slate-300">كلمة المرور</label>
         <div class="relative">
           <input 
             type="password" 
@@ -43,38 +43,20 @@
             <i class="fa-solid fa-lock absolute end-4 top-1/2 -translate-y-1/2 text-slate-300"></i>
         </div>
         @if (error()) {
-          <p class="text-red-400 text-sm mt-2 animate-shake">{{ 'login.passwordError' | translate }}</p>
+          <p class="text-red-400 text-sm mt-2 animate-shake">كلمة المرور غير صحيحة.</p>
         }
       </div>
       
       <button 
         type="submit"
         class="w-full bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl py-3 font-bold text-lg shadow-lg hover:scale-105 active:scale-100 transition-transform duration-200">
-        {{ 'login.loginButton' | translate }}
+        دخول
       </button>
     </form>
     
-    <div class="mt-6 text-center">
-      <label for="language-select" class="block mb-2 text-sm font-bold text-slate-300">{{ 'login.changeLanguage' | translate }}</label>
-      <div class="relative inline-block">
-        <select 
-          id="language-select" 
-          (change)="changeLanguage($event)" 
-          [value]="languageService.language()"
-          class="appearance-none w-full bg-white/10 border-2 border-white/20 rounded-xl py-2 px-4 pr-8 focus:outline-none focus:border-blue-400 transition text-white">
-          <option value="ar">{{ 'languages.ar' | translate }}</option>
-          <option value="en">{{ 'languages.en' | translate }}</option>
-          <option value="fr">{{ 'languages.fr' | translate }}</option>
-        </select>
-        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-300">
-          <i class="fa-solid fa-chevron-down text-xs"></i>
-        </div>
-      </div>
-    </div>
-
     <div class="my-6 flex items-center">
       <div class="flex-grow border-t border-slate-500"></div>
-      <span class="mx-4 flex-shrink text-slate-300 text-sm">{{ 'login.socialSeparator' | translate }}</span>
+      <span class="mx-4 flex-shrink text-slate-300 text-sm">أو سجل الدخول عبر</span>
       <div class="flex-grow border-t border-slate-500"></div>
     </div>
 

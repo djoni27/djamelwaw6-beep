@@ -5,12 +5,10 @@ import { Product } from '../../types';
 import { CartService } from '../../cart.service';
 import { SettingsService } from '../../settings.service';
 import { ProductService } from '../../product.service';
-import { TranslatePipe } from '../../translate.pipe';
-import { LanguageService } from '../../language.service';
 
 @Component({
   selector: 'app-store',
-  imports: [CommonModule, RouterModule, TranslatePipe, NgOptimizedImage],
+  imports: [CommonModule, RouterModule, NgOptimizedImage],
   templateUrl: './store.component.html',
   styleUrls: ['./store.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,7 +18,6 @@ export class StoreComponent {
     cartService = inject(CartService);
     settingsService = inject(SettingsService);
     productService = inject(ProductService);
-    private languageService = inject(LanguageService);
 
     // Get products & settings from services
     products = this.productService.products;
@@ -104,7 +101,7 @@ export class StoreComponent {
 
     shareTo(platform: 'facebook' | 'telegram', product: Product) {
         const url = encodeURIComponent(window.location.href);
-        const text = encodeURIComponent(this.languageService.translate('store.shareText', { productName: product.name }));
+        const text = encodeURIComponent(`اكتشف هذا المنتج الرائع: ${product.name}!`);
         let shareUrl = '';
 
         if (platform === 'facebook') {
@@ -130,14 +127,14 @@ export class StoreComponent {
             }).catch(err => console.error('Failed to copy: ', err));
         } else {
             console.error('Clipboard API not available.');
-            alert(this.languageService.translate('store.copyLinkUnsupported'));
+            alert('خاصية نسخ الرابط غير مدعومة في هذا المتصفح.');
         }
     }
 
     nativeShare(product: Product) {
         const shareData = {
             title: product.name,
-            text: this.languageService.translate('store.shareTextWithDesc', { productName: product.name, productDescription: product.description }),
+            text: `اكتشف هذا المنتج الرائع: ${product.name}!\n${product.description}`,
             url: window.location.href
         };
 

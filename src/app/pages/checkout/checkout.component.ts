@@ -5,8 +5,6 @@ import { Router, RouterModule } from '@angular/router';
 import { CartService } from '../../cart.service';
 import { SettingsService } from '../../settings.service';
 import { DeliveryCompany } from '../../types';
-import { TranslatePipe } from '../../translate.pipe';
-import { LanguageService } from '../../language.service';
 
 interface Wilaya {
   name: string;
@@ -25,7 +23,7 @@ interface ConfirmedOrder {
 
 @Component({
   selector: 'app-checkout',
-  imports: [CommonModule, ReactiveFormsModule, RouterModule, TranslatePipe, NgOptimizedImage],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, NgOptimizedImage],
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -33,7 +31,6 @@ interface ConfirmedOrder {
 export class CheckoutComponent implements OnInit {
   private cartService = inject(CartService);
   private settingsService = inject(SettingsService);
-  private languageService = inject(LanguageService);
 
   cart = this.cartService.cart;
   settings = this.settingsService.settings;
@@ -149,32 +146,31 @@ export class CheckoutComponent implements OnInit {
   }
 
   private formatOrderAsText(order: ConfirmedOrder): string {
-    const t = this.languageService.translate.bind(this.languageService);
-    const currency = t('store.currency');
+    const currency = 'د.ج';
     let text = `
-${t('order.title', { storeName: this.settings().storeName })}
+طلب جديد من متجر: ${this.settings().storeName}
 ================================
-${t('order.customerInfo')}
-${t('order.name', { name: order.customer.name })}
-${t('order.phone', { phone: order.customer.phone })}
-${t('order.address', { wilaya: order.customer.wilaya, city: order.customer.city })}
-${t('order.email', { email: order.customer.email || t('order.notSpecified') })}
-${t('order.deliveryCompany', { company: order.deliveryCompany })}
+** معلومات الزبون **
+الاسم: ${order.customer.name}
+الهاتف: ${order.customer.phone}
+الولاية: ${order.customer.wilaya}, ${order.customer.city}
+البريد الإلكتروني: ${order.customer.email || 'لم يحدد'}
+شركة التوصيل: ${order.deliveryCompany}
 ================================
-${t('order.products')}
+** المنتجات المطلوبة **
 `;
     order.items.forEach(item => {
-        text += `${t('order.productLine', { name: item.name, quantity: item.quantity.toString(), price: `${item.price.toLocaleString()} ${currency}` })}\n`;
+        text += `- ${item.name} (x${item.quantity}) - السعر: ${item.price.toLocaleString()} ${currency}\n`;
     });
 
     text += `
 ================================
-${t('order.paymentSummary')}
-${t('order.subtotal', { amount: `${order.subtotal.toLocaleString()} ${currency}` })}
-${t('order.shipping', { amount: `${order.shipping.toLocaleString()} ${currency}` })}
-${t('order.deliveryFee', { amount: `${order.deliveryFee.toLocaleString()} ${currency}` })}
+** ملخص الدفع **
+المجموع الفرعي: ${order.subtotal.toLocaleString()} ${currency}
+شحن للولاية: ${order.shipping.toLocaleString()} ${currency}
+رسوم شركة التوصيل: ${order.deliveryFee.toLocaleString()} ${currency}
 --------------------------------
-${t('order.total', { amount: `${order.total.toLocaleString()} ${currency}` })}
+الإجمالي للدفع: ${order.total.toLocaleString()} ${currency}
 ================================
     `;
     return text.trim();
@@ -183,7 +179,6 @@ ${t('order.total', { amount: `${order.total.toLocaleString()} ${currency}` })}
   sendNotification() {
     const order = this.confirmedOrder();
     if (!order) return;
-    const t = this.languageService.translate.bind(this.languageService);
 
     const notificationSettings = this.settings().notifications;
     const message = this.formatOrderAsText(order);
@@ -195,22 +190,22 @@ ${t('order.total', { amount: `${order.total.toLocaleString()} ${currency}` })}
             window.open(`https://wa.me/${destination}?text=${encodedMessage}`, '_blank');
             break;
         case 'email':
-            const subject = t('order.title', { storeName: this.settings().storeName });
+            const subject = `طلب جديد من متجر: ${this.settings().storeName}`;
             window.location.href = `mailto:${destination}?subject=${encodeURIComponent(subject)}&body=${encodedMessage}`;
             break;
         case 'messenger':
             window.open(`https://m.me/${destination}`, '_blank');
-            alert(t('checkout.messengerPaste'));
+            alert('سيتم فتح الماسنجر. يرجى لصق تفاصيل الطلب يدوياً.');
             break;
         case 'telegram':
             window.open(`https://t.me/${destination}`, '_blank');
-            alert(t('checkout.telegramPaste'));
+            alert('سيتم فتح التليغرام. يرجى لصق تفاصيل الطلب يدوياً.');
             break;
         case 'webhook':
-            alert(t('checkout.webhookInfo', { message }));
+            alert(`سيتم إرسال البيانات التالية إلى Webhook:\n\n${message}`);
             break;
         default:
-            alert(t('checkout.noNotificationMethod'));
+            alert('لم يتم تكوين طريقة الإشعار في لوحة التحكم.');
     }
   }
 

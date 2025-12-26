@@ -2,19 +2,16 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 import { Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { TranslatePipe } from '../../translate.pipe';
-import { Language, LanguageService } from '../../language.service';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, CommonModule, TranslatePipe, NgOptimizedImage],
+  imports: [ReactiveFormsModule, CommonModule, NgOptimizedImage],
   templateUrl: './login.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
   private router: Router = inject(Router);
   private fb: FormBuilder = inject(FormBuilder);
-  languageService = inject(LanguageService);
   
   error = signal(false);
 
@@ -37,10 +34,5 @@ export class LoginComponent {
     } else {
       this.error.set(true);
     }
-  }
-
-  changeLanguage(event: Event) {
-    const selectedLang = (event.target as HTMLSelectElement).value as Language;
-    this.languageService.setLanguage(selectedLang);
   }
 }

@@ -6,12 +6,10 @@ import { ProductService } from '../../product.service';
 import { DeliveryCompany, Product, ProductVariant } from '../../types';
 import { FormBuilder, ReactiveFormsModule, Validators, FormArray, FormGroup, AbstractControl } from '@angular/forms';
 import { GeminiService } from '../../gemini.service';
-import { TranslatePipe } from '../../translate.pipe';
-import { LanguageService } from '../../language.service';
 
 @Component({
   selector: 'app-admin',
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, TranslatePipe, NgOptimizedImage],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, NgOptimizedImage],
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,7 +21,6 @@ export class AdminComponent implements OnInit {
   private fb: FormBuilder = inject(FormBuilder);
   private geminiService = inject(GeminiService);
   private cdr = inject(ChangeDetectorRef);
-  private languageService = inject(LanguageService);
 
   isGeminiConfigured = this.geminiService.isConfigured;
   geminiConfigurationError = this.geminiService.configurationError;
@@ -147,14 +144,13 @@ export class AdminComponent implements OnInit {
   }
   
   getActiveTabName(): string {
-    const t = this.languageService.translate.bind(this.languageService);
     switch(this.activeTab()) {
-        case 'settings': return t('admin.header.settings');
-        case 'products': return t('admin.header.products');
-        case 'categories': return t('admin.header.categories');
-        case 'delivery': return t('admin.header.delivery');
-        case 'notifications': return t('admin.header.notifications');
-        default: return t('admin.header.dashboard');
+        case 'settings': return 'الإعدادات والمظهر';
+        case 'products': return 'المنتجات';
+        case 'categories': return 'التصنيفات';
+        case 'delivery': return 'شركات التوصيل';
+        case 'notifications': return 'الإشعارات';
+        default: return 'لوحة التحكم';
     }
   }
 
@@ -246,13 +242,13 @@ export class AdminComponent implements OnInit {
       })
       .catch(error => {
         console.error('Error processing image:', error);
-        alert(this.languageService.translate('admin.products.imageProcessingError'));
+        alert('حدث خطأ أثناء معالجة الصورة.');
       });
   }
 
   async openCamera(control: AbstractControl) {
     if (typeof navigator === 'undefined' || !navigator.mediaDevices) {
-      alert(this.languageService.translate('admin.camera.notAvailable'));
+      alert('واجهة برمجة تطبيقات الكاميرا غير متوفرة.');
       console.error('Camera API (navigator.mediaDevices) not available.');
       return;
     }
@@ -268,7 +264,7 @@ export class AdminComponent implements OnInit {
         }, 50);
     } catch (err) {
         console.error("Error accessing camera: ", err);
-        alert(this.languageService.translate('admin.camera.error'));
+        alert('لا يمكن الوصول للكاميرا. يرجى التأكد من منح الإذن.');
         this.isCameraOpen.set(false);
     }
   }
@@ -302,20 +298,20 @@ export class AdminComponent implements OnInit {
   saveSettings() {
     if (this.settingsForm.valid) {
       this.settingsService.updateSettings(this.settingsForm.value as any);
-      this.settingsService.showToast('admin.settings.toastSaved');
+      this.settingsService.showToast('تم حفظ الإعدادات والمظهر');
     }
   }
   
   saveNotifications() {
       if (this.notificationsForm.valid) {
           this.settingsService.updateSettings({ notifications: this.notificationsForm.value as any });
-          this.settingsService.showToast('admin.notifications.toastSaved');
+          this.settingsService.showToast('تم حفظ إعدادات الإشعارات');
       }
   }
 
   // --- Category Methods ---
   renameCategory(oldName: string) {
-    const promptMessage = this.languageService.translate('admin.categories.renamePrompt', { oldName });
+    const promptMessage = `إعادة تسمية التصنيف "${oldName}":`;
     const newName = prompt(promptMessage, oldName);
     if (newName && newName !== oldName) {
       this.productService.updateCategory(oldName, newName);
@@ -323,7 +319,7 @@ export class AdminComponent implements OnInit {
   }
 
   deleteCategory(categoryName: string) {
-    const confirmMessage = this.languageService.translate('admin.categories.deleteConfirm', { categoryName });
+    const confirmMessage = `هل أنت متأكد من حذف التصنيف "${categoryName}" وجميع منتجاته؟`;
     if (confirm(confirmMessage)) {
       this.productService.deleteCategory(categoryName);
     }
@@ -341,7 +337,7 @@ export class AdminComponent implements OnInit {
     } else {
       this.settingsService.addDeliveryCompany(this.deliveryForm.value as Omit<DeliveryCompany, 'id'>);
     }
-    this.settingsService.showToast('admin.delivery.toastSaved');
+    this.settingsService.showToast('تم حفظ شركة التوصيل');
     this.cancelDeliveryEdit();
   }
 
@@ -397,7 +393,7 @@ export class AdminComponent implements OnInit {
       const productName = this.productForm.get('name')?.value;
 
       if (!imageControl || !colorControl || !productName) {
-          alert(this.languageService.translate('admin.products.variantPromptError'));
+          alert('يرجى إدخال اسم المنتج ولون النوع أولاً.');
           return;
       }
       
@@ -410,7 +406,7 @@ export class AdminComponent implements OnInit {
       } catch (error: unknown) {
           console.error('Failed to generate variant image:', error);
           
-          const genericMessage = this.languageService.translate('admin.products.variantGenerationError');
+          const genericMessage = 'فشل توليد الصورة. يرجى المحاولة مرة أخرى.';
           let specificMessage = '';
 
           if (error instanceof Error) {
@@ -462,7 +458,7 @@ export class AdminComponent implements OnInit {
       const { id, ...newProduct } = productToSave;
       this.productService.addProduct(newProduct as Omit<Product, 'id'>);
     }
-    this.settingsService.showToast('admin.products.toastSaved');
+    this.settingsService.showToast('تم حفظ المنتج');
     this.cancelProductEdit();
   }
 

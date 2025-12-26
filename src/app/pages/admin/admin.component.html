@@ -5,7 +5,7 @@
     [class.translate-x-0]="isSidebarOpen()"
     [class.translate-x-full]="!isSidebarOpen()">
     <div class="flex items-center justify-between p-6 text-center border-b border-slate-700">
-      <a routerLink="/store" class="text-xl font-black">{{ 'admin.sidebar.title' | translate }}</a>
+      <a routerLink="/store" class="text-xl font-black">المتجر البلاتيني</a>
       <button (click)="isSidebarOpen.set(false)" class="md:hidden text-2xl text-slate-400 hover:text-white">
         <i class="fa-solid fa-times"></i>
       </button>
@@ -15,36 +15,36 @@
         [class.bg-slate-700]="activeTab() === 'settings'"
         class="w-full text-right flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-700 transition">
         <i class="fa-solid fa-gears w-5"></i>
-        <span>{{ 'admin.sidebar.settings' | translate }}</span>
+        <span>الإعدادات والمظهر</span>
       </button>
       <button (click)="activeTab.set('products'); isSidebarOpen.set(false)" 
         [class.bg-slate-700]="activeTab() === 'products'"
         class="w-full text-right flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-700 transition">
         <i class="fa-solid fa-box-archive w-5"></i>
-        <span>{{ 'admin.sidebar.products' | translate }}</span>
+        <span>المنتجات</span>
       </button>
       <button (click)="activeTab.set('categories'); isSidebarOpen.set(false)"
         [class.bg-slate-700]="activeTab() === 'categories'"
         class="w-full text-right flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-700 transition">
         <i class="fa-solid fa-tags w-5"></i>
-        <span>{{ 'admin.sidebar.categories' | translate }}</span>
+        <span>التصنيفات</span>
       </button>
       <button (click)="activeTab.set('delivery'); isSidebarOpen.set(false)" 
         [class.bg-slate-700]="activeTab() === 'delivery'"
         class="w-full text-right flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-700 transition">
         <i class="fa-solid fa-truck w-5"></i>
-        <span>{{ 'admin.sidebar.delivery' | translate }}</span>
+        <span>شركات التوصيل</span>
       </button>
        <button (click)="activeTab.set('notifications'); isSidebarOpen.set(false)"
         [class.bg-slate-700]="activeTab() === 'notifications'"
         class="w-full text-right flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-slate-700 transition">
         <i class="fa-solid fa-bell w-5"></i>
-        <span>{{ 'admin.sidebar.notifications' | translate }}</span>
+        <span>الإشعارات</span>
       </button>
     </nav>
     <div class="p-4 border-t border-slate-700">
       <a routerLink="/store" class="w-full text-center block bg-blue-600 px-4 py-3 rounded-lg hover:bg-blue-700 transition">
-        {{ 'admin.sidebar.backToStore' | translate }}
+        العودة للمتجر
       </a>
     </div>
   </aside>
@@ -69,7 +69,7 @@
         @switch (activeTab()) {
         @case ('settings') {
             <div>
-            <h1 class="text-3xl font-black mb-6 text-slate-800">{{ 'admin.settings.title' | translate }}</h1>
+            <h1 class="text-3xl font-black mb-6 text-slate-800">الإعدادات والمظهر</h1>
             <form [formGroup]="settingsForm" (ngSubmit)="saveSettings()" class="bg-slate-50 p-6 rounded-2xl shadow-lg space-y-8">
                 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -77,20 +77,20 @@
                     <div class="space-y-8">
                         <!-- General Settings -->
                         <fieldset>
-                        <h2 class="text-xl font-bold mb-4 border-b pb-2 text-slate-800">{{ 'admin.settings.general' | translate }}</h2>
+                        <h2 class="text-xl font-bold mb-4 border-b pb-2 text-slate-800">الإعدادات العامة</h2>
                         <div class="space-y-4">
                             <div>
-                                <label class="font-bold text-sm text-slate-600">{{ 'admin.settings.storeName' | translate }}</label>
+                                <label class="font-bold text-sm text-slate-600">اسم المتجر</label>
                                 <input formControlName="storeName" class="w-full mt-1 p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition">
                             </div>
                             <div>
-                                <label class="font-bold text-sm text-slate-600">{{ 'admin.settings.heroTitle' | translate }}</label>
+                                <label class="font-bold text-sm text-slate-600">العنوان الرئيسي</label>
                                 <input formControlName="heroTitle" class="w-full mt-1 p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition">
                             </div>
                             <div>
-                                <label class="font-bold text-sm text-slate-600">{{ 'admin.settings.logo' | translate }}</label>
+                                <label class="font-bold text-sm text-slate-600">شعار المتجر</label>
                                 <div class="flex items-start gap-4 mt-1">
-                                    <img [ngSrc]="settingsForm.get('logo')?.value || 'https://via.placeholder.com/100'" alt="Store logo preview" width="80" height="80" class="w-20 h-20 object-contain bg-white rounded-lg p-1 border border-slate-200">
+                                    <img [src]="settingsForm.get('logo')?.value || 'https://via.placeholder.com/100'" alt="Store logo preview" width="80" height="80" class="w-20 h-20 object-contain bg-white rounded-lg p-1 border border-slate-200">
                                     <div class="flex-1">
                                         <div class="flex items-center gap-2">
                                             <label class="p-2 h-10 w-10 bg-slate-200 text-slate-700 rounded-lg hover:bg-slate-300 cursor-pointer text-center" title="تحميل صورة">
@@ -106,14 +106,14 @@
                                 </div>
                             </div>
                             <div>
-                                <label class="font-bold text-sm text-slate-600">{{ 'admin.settings.logoAnimation' | translate }}</label>
+                                <label class="font-bold text-sm text-slate-600">تأثير حركة الشعار</label>
                                 <select formControlName="logoAnimation" class="w-full mt-1 p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition">
-                                    <option value="none">{{ 'admin.settings.animations.none' | translate }}</option>
-                                    <option value="pulse">{{ 'admin.settings.animations.pulse' | translate }}</option>
-                                    <option value="rotate">{{ 'admin.settings.animations.rotate' | translate }}</option>
-                                    <option value="bounce">{{ 'admin.settings.animations.bounce' | translate }}</option>
-                                    <option value="sparkle">{{ 'admin.settings.animations.sparkle' | translate }}</option>
-                                    <option value="wave">{{ 'admin.settings.animations.wave' | translate }}</option>
+                                    <option value="none">بدون تأثير</option>
+                                    <option value="pulse">نبض</option>
+                                    <option value="rotate">دوران</option>
+                                    <option value="bounce">ارتداد</option>
+                                    <option value="sparkle">لمعان</option>
+                                    <option value="wave">موجة</option>
                                 </select>
                             </div>
                         </div>
@@ -121,10 +121,10 @@
 
                         <!-- Background -->
                         <fieldset>
-                        <h2 class="text-xl font-bold mb-4 border-b pb-2 text-slate-800">{{ 'admin.settings.background' | translate }}</h2>
+                        <h2 class="text-xl font-bold mb-4 border-b pb-2 text-slate-800">الخلفية</h2>
                         <div class="space-y-4">
                                 <div>
-                                <label class="font-bold text-sm text-slate-600">{{ 'admin.settings.bgImage' | translate }}</label>
+                                <label class="font-bold text-sm text-slate-600">صورة الخلفية</label>
                                 <div class="flex items-center gap-2 mt-1">
                                     <label class="p-2 h-10 w-10 bg-slate-200 text-slate-700 rounded-lg hover:bg-slate-300 cursor-pointer text-center" title="تحميل صورة">
                                         <i class="fa-solid fa-upload"></i>
@@ -137,7 +137,7 @@
                                 </div>
                                 </div>
                                 <div>
-                                <label class="font-bold text-sm text-slate-600">{{ 'admin.settings.bgColor' | translate }}</label>
+                                <label class="font-bold text-sm text-slate-600">أو اختر لون للخلفية</label>
                                 <input formControlName="bgColor" type="color" class="w-full mt-1 h-12 border rounded-lg p-1">
                                 </div>
                         </div>
@@ -145,14 +145,14 @@
 
                         <!-- Background Overlay -->
                         <fieldset>
-                            <h2 class="text-xl font-bold mb-4 border-b pb-2 text-slate-800">{{ 'admin.settings.bgOverlay' | translate }}</h2>
+                            <h2 class="text-xl font-bold mb-4 border-b pb-2 text-slate-800">غطاء الخلفية الشفاف</h2>
                             <div class="space-y-4">
                                 <div>
-                                    <label class="font-bold text-sm text-slate-600">{{ 'admin.settings.overlayColor' | translate }}</label>
+                                    <label class="font-bold text-sm text-slate-600">لون الغطاء</label>
                                     <input formControlName="bgOverlayColor" type="color" class="w-full mt-1 h-12 border rounded-lg p-1">
                                 </div>
                                 <div>
-                                    <label class="font-bold text-sm text-slate-600 block mb-2">{{ 'admin.settings.overlayOpacity' | translate }}: <span class="font-mono text-blue-600">{{ (settingsForm.get('bgOverlayOpacity')?.value * 100).toFixed(0) }}%</span></label>
+                                    <label class="font-bold text-sm text-slate-600 block mb-2">شفافية الغطاء: <span class="font-mono text-blue-600">{{ (settingsForm.get('bgOverlayOpacity')?.value * 100).toFixed(0) }}%</span></label>
                                     <input formControlName="bgOverlayOpacity" type="range" min="0" max="1" step="0.05" class="w-full mt-1 h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
                                 </div>
                             </div>
@@ -163,84 +163,84 @@
                     <div class="space-y-8">
                         <!-- Appearance Settings -->
                         <fieldset>
-                        <h2 class="text-xl font-bold mb-4 border-b pb-2 text-slate-800">{{ 'admin.settings.heroAppearance' | translate }}</h2>
+                        <h2 class="text-xl font-bold mb-4 border-b pb-2 text-slate-800">مظهر العنوان الرئيسي</h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                <label class="font-bold text-sm text-slate-600">{{ 'admin.settings.fontColor' | translate }}</label>
+                                <label class="font-bold text-sm text-slate-600">لون الخط</label>
                                 <input formControlName="heroColor" type="color" class="w-full mt-1 h-12 border rounded-lg p-1">
                                 </div>
                             <div>
-                                <label class="font-bold text-sm text-slate-600">{{ 'admin.settings.fontSize' | translate }}</label>
+                                <label class="font-bold text-sm text-slate-600">حجم الخط</label>
                                 <select formControlName="heroSize" class="w-full mt-1 p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition">
-                                    <option value="2rem">{{ 'admin.settings.sizes.small' | translate }}</option>
-                                    <option value="3rem">{{ 'admin.settings.sizes.medium' | translate }}</option>
-                                    <option value="4rem">{{ 'admin.settings.sizes.large' | translate }}</option>
-                                    <option value="5rem">{{ 'admin.settings.sizes.huge' | translate }}</option>
+                                    <option value="2rem">صغير</option>
+                                    <option value="3rem">متوسط</option>
+                                    <option value="4rem">كبير</option>
+                                    <option value="5rem">ضخم</option>
                                 </select>
                             </div>
                             <div class="md:col-span-2">
-                                <label class="font-bold text-sm text-slate-600">{{ 'admin.settings.fontType' | translate }}</label>
+                                <label class="font-bold text-sm text-slate-600">نوع الخط</label>
                                 <select formControlName="heroFont" class="w-full mt-1 p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition">
                                     <option value="'Tajawal', sans-serif">Tajawal</option>
                                     <option value="'Cairo', sans-serif">Cairo</option>
                                 </select>
                             </div>
                             <div class="md:col-span-2">
-                                <label class="font-bold text-sm text-slate-600">{{ 'admin.settings.heroAnimation' | translate }}</label>
+                                <label class="font-bold text-sm text-slate-600">تأثير حركة العنوان</label>
                                 <select formControlName="heroAnimation" class="w-full mt-1 p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition">
-                                    <option value="slide">{{ 'admin.settings.animationsHero.slideLeft' | translate }}</option>
-                                    <option value="slideRight">{{ 'admin.settings.animationsHero.slideRight' | translate }}</option>
-                                    <option value="rotate">{{ 'admin.settings.animationsHero.rotate' | translate }}</option>
-                                    <option value="fade">{{ 'admin.settings.animationsHero.fadeInOut' | translate }}</option>
-                                    <option value="pulse">{{ 'admin.settings.animationsHero.pulse' | translate }}</option>
-                                    <option value="bounce">{{ 'admin.settings.animationsHero.bounce' | translate }}</option>
-                                    <option value="sparkle">{{ 'admin.settings.animationsHero.sparkle' | translate }}</option>
-                                    <option value="wave">{{ 'admin.settings.animationsHero.wave' | translate }}</option>
-                                    <option value="zoom">{{ 'admin.settings.animationsHero.zoom' | translate }}</option>
-                                    <option value="flip">{{ 'admin.settings.animationsHero.flip' | translate }}</option>
+                                    <option value="slide">تحرك من اليسار</option>
+                                    <option value="slideRight">تحرك من اليمين</option>
+                                    <option value="rotate">دوران</option>
+                                    <option value="fade">ظهور واختفاء</option>
+                                    <option value="pulse">نبض</option>
+                                    <option value="bounce">ارتداد</option>
+                                    <option value="sparkle">لمعان</option>
+                                    <option value="wave">موجة</option>
+                                    <option value="zoom">تكبير</option>
+                                    <option value="flip">انقلاب</option>
                                 </select>
                             </div>
                         </div>
                         </fieldset>
 
                         <fieldset>
-                        <h2 class="text-xl font-bold mb-4 border-b pb-2 text-slate-800">{{ 'admin.settings.productCard' | translate }}</h2>
+                        <h2 class="text-xl font-bold mb-4 border-b pb-2 text-slate-800">تخصيص بطاقة المنتج</h2>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                <label class="font-bold text-sm text-slate-600">{{ 'admin.settings.cardBgColor' | translate }}</label>
+                                <label class="font-bold text-sm text-slate-600">لون خلفية البطاقة</label>
                                 <input formControlName="cardBgColor" type="color" class="w-full mt-1 h-12 border rounded-lg p-1">
                                 </div>
                                 <div>
-                                <label class="font-bold text-sm text-slate-600">{{ 'admin.settings.cardTextColor' | translate }}</label>
+                                <label class="font-bold text-sm text-slate-600">لون خط البطاقة</label>
                                 <input formControlName="cardTextColor" type="color" class="w-full mt-1 h-12 border rounded-lg p-1">
                                 </div>
                                 <div>
-                                    <label class="font-bold text-sm text-slate-600">{{ 'admin.settings.cardBorderRadius' | translate }}</label>
+                                    <label class="font-bold text-sm text-slate-600">حواف البطاقة</label>
                                     <select formControlName="cardBorderRadius" class="w-full mt-1 p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition">
-                                        <option value="0.25rem">{{ 'admin.settings.radius.xs' | translate }}</option>
-                                        <option value="0.5rem">{{ 'admin.settings.radius.sm' | translate }}</option>
-                                        <option value="1rem">{{ 'admin.settings.radius.md' | translate }}</option>
-                                        <option value="1.5rem">{{ 'admin.settings.radius.lg' | translate }}</option>
-                                        <option value="9999px">{{ 'admin.settings.radius.full' | translate }}</option>
+                                        <option value="0.25rem">صغيرة جدا</option>
+                                        <option value="0.5rem">صغيرة</option>
+                                        <option value="1rem">متوسطة</option>
+                                        <option value="1.5rem">كبيرة</option>
+                                        <option value="9999px">دائرية</option>
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="font-bold text-sm text-slate-600">{{ 'admin.settings.cardShadow' | translate }}</label>
+                                    <label class="font-bold text-sm text-slate-600">ظل البطاقة</label>
                                     <select formControlName="cardShadow" class="w-full mt-1 p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition">
-                                        <option value="none">{{ 'admin.settings.shadows.none' | translate }}</option>
-                                        <option value="0 1px 2px 0 rgb(0 0 0 / 0.05)">{{ 'admin.settings.shadows.sm' | translate }}</option>
-                                        <option value="0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)">{{ 'admin.settings.shadows.md' | translate }}</option>
-                                        <option value="0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)">{{ 'admin.settings.shadows.lg' | translate }}</option>
-                                        <option value="0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)">{{ 'admin.settings.shadows.xl' | translate }}</option>
+                                        <option value="none">بدون ظل</option>
+                                        <option value="0 1px 2px 0 rgb(0 0 0 / 0.05)">خفيف</option>
+                                        <option value="0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)">متوسط</option>
+                                        <option value="0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)">كبير</option>
+                                        <option value="0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)">كبير جدا</option>
                                     </select>
                                 </div>
                                 <div class="md:col-span-2">
-                                    <label class="font-bold text-sm text-slate-600">{{ 'admin.settings.cardAnimation' | translate }}</label>
+                                    <label class="font-bold text-sm text-slate-600">تأثير حركة البطاقة</label>
                                     <select formControlName="cardAnimation" class="w-full mt-1 p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition">
-                                        <option value="fade">{{ 'admin.settings.animationsCard.fade' | translate }}</option>
-                                        <option value="slide-up">{{ 'admin.settings.animationsCard.slideUp' | translate }}</option>
-                                        <option value="zoom-in">{{ 'admin.settings.animationsCard.zoomIn' | translate }}</option>
-                                        <option value="flip">{{ 'admin.settings.animationsCard.flip' | translate }}</option>
+                                        <option value="fade">ظهور تدريجي</option>
+                                        <option value="slide-up">صعود للأعلى</option>
+                                        <option value="zoom-in">تكبير للداخل</option>
+                                        <option value="flip">انقلاب أفقي</option>
                                     </select>
                                 </div>
                             </div>
@@ -249,39 +249,39 @@
                 </div>
 
                 <div class="flex justify-end pt-4 border-t mt-8">
-                    <button type="submit" class="px-8 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 font-bold">{{ 'admin.settings.saveButton' | translate }}</button>
+                    <button type="submit" class="px-8 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 font-bold">حفظ الإعدادات</button>
                 </div>
             </form>
             </div>
         }
         @case ('products') {
             <div>
-            <h1 class="text-3xl font-black mb-6 text-slate-800 hidden md:block">{{ 'admin.products.title' | translate }}</h1>
+            <h1 class="text-3xl font-black mb-6 text-slate-800 hidden md:block">إدارة المنتجات</h1>
             <!-- Add/Edit Form -->
             <div class="bg-slate-50 p-6 rounded-2xl shadow-lg mb-8">
-                <h2 class="text-xl font-bold mb-4 text-slate-800">{{ (isEditingProduct() ? 'admin.products.editTitle' : 'admin.products.addTitle') | translate }}</h2>
+                <h2 class="text-xl font-bold mb-4 text-slate-800">{{ isEditingProduct() ? 'تعديل منتج' : 'إضافة منتج جديد' }}</h2>
                 <form [formGroup]="productForm" (ngSubmit)="saveProduct()" class="space-y-6">
                 
                 <!-- Basic Product Info -->
                 <fieldset class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input formControlName="name" [placeholder]="'admin.products.name' | translate" class="w-full p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition">
-                    <input formControlName="price" type="number" [placeholder]="'admin.products.price' | translate" class="w-full p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition">
-                    <input formControlName="category" [placeholder]="'admin.products.category' | translate" class="w-full p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition">
-                    <textarea formControlName="description" [placeholder]="'admin.products.description' | translate" class="md:col-span-2 w-full p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition h-24"></textarea>
+                    <input formControlName="name" placeholder="اسم المنتج" class="w-full p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition">
+                    <input formControlName="price" type="number" placeholder="السعر" class="w-full p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition">
+                    <input formControlName="category" placeholder="التصنيف" class="w-full p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition">
+                    <textarea formControlName="description" placeholder="الوصف" class="md:col-span-2 w-full p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition h-24"></textarea>
                 </fieldset>
 
                 <!-- Main Image -->
                 <fieldset>
-                    <label class="font-bold text-sm text-slate-600 mb-2 block">{{ 'admin.products.mainImage' | translate }}</label>
+                    <label class="font-bold text-sm text-slate-600 mb-2 block">الصورة الرئيسية للمنتج</label>
                     <div class="flex items-start gap-4">
                     @if(productForm.controls.image.value) {
-                        <img [ngSrc]="productForm.controls.image.value" alt="Main product image preview" width="96" height="96" class="w-24 h-24 object-cover rounded-lg border bg-white p-1">
+                        <img [src]="productForm.controls.image.value" alt="Main product image preview" width="96" height="96" class="w-24 h-24 object-cover rounded-lg border bg-white p-1">
                     }
                     <div class="flex-1">
                         <div class="flex items-center gap-2">
-                            <button type="button" (click)="openCamera(productForm.controls.image)" class="p-2 h-10 w-10 bg-slate-200 text-slate-700 rounded-lg hover:bg-slate-300" [title]="'admin.products.captureImage' | translate"><i class="fa-solid fa-camera"></i></button>
-                            <label class="p-2 h-10 w-10 bg-slate-200 text-slate-700 rounded-lg hover:bg-slate-300 cursor-pointer text-center" [title]="'admin.products.uploadImage' | translate"><i class="fa-solid fa-upload"></i><input #productImageUpload type="file" class="hidden" (change)="handleFileInputChange(productImageUpload, productForm.controls.image, 'productMain')"></label>
-                            <input [formControl]="productForm.controls.image" [placeholder]="'admin.products.imageUrl' | translate" class="w-full p-2 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition h-10">
+                            <button type="button" (click)="openCamera(productForm.controls.image)" class="p-2 h-10 w-10 bg-slate-200 text-slate-700 rounded-lg hover:bg-slate-300" title="التقاط صورة"><i class="fa-solid fa-camera"></i></button>
+                            <label class="p-2 h-10 w-10 bg-slate-200 text-slate-700 rounded-lg hover:bg-slate-300 cursor-pointer text-center" title="تحميل صورة"><i class="fa-solid fa-upload"></i><input #productImageUpload type="file" class="hidden" (change)="handleFileInputChange(productImageUpload, productForm.controls.image, 'productMain')"></label>
+                            <input [formControl]="productForm.controls.image" placeholder="أو أدخل رابط الصورة" class="w-full p-2 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition h-10">
                             @if (uploadSuccessState()['productMain']) {
                                 <i class="fa-solid fa-circle-check text-green-500 text-2xl animate-success-pop"></i>
                             }
@@ -292,29 +292,29 @@
 
                 <!-- Variants Section -->
                 <fieldset>
-                    <h3 class="text-lg font-bold mb-2 text-slate-800 border-t pt-4">{{ 'admin.products.variants' | translate }}</h3>
+                    <h3 class="text-lg font-bold mb-2 text-slate-800 border-t pt-4">أنواع المنتج (الألوان والمقاسات)</h3>
                     <!-- Add New Variant Form -->
                     <div [formGroup]="newVariantForm" class="p-3 bg-slate-200 rounded-lg flex flex-wrap items-end gap-2">
                         <div class="flex-1 min-w-[60px]">
-                            <label class="font-bold text-xs text-slate-600">{{ 'admin.products.color' | translate }}</label>
+                            <label class="font-bold text-xs text-slate-600">اللون</label>
                             <input type="color" formControlName="color" class="w-full h-10 p-1 border rounded-md">
                         </div>
                         <div class="flex-[3] min-w-[180px]">
-                            <label class="font-bold text-xs text-slate-600">{{ 'admin.products.variantImage' | translate }}</label>
+                            <label class="font-bold text-xs text-slate-600">صورة خاصة باللون (اختياري)</label>
                             <div class="flex items-center gap-2">
-                                <button type="button" (click)="openCamera(newVariantForm.controls.image)" class="p-2 h-10 w-10 bg-white text-slate-700 rounded-lg hover:bg-slate-100" [title]="'admin.products.captureImage' | translate"><i class="fa-solid fa-camera"></i></button>
-                                <label class="p-2 h-10 w-10 bg-white text-slate-700 rounded-lg hover:bg-slate-100 cursor-pointer text-center" [title]="'admin.products.uploadImage' | translate"><i class="fa-solid fa-upload"></i><input #variantImageUpload type="file" class="hidden" (change)="handleFileInputChange(variantImageUpload, newVariantForm.controls.image, 'newVariant')"></label>
-                                <input formControlName="image" [placeholder]="'admin.products.variantImageUrl' | translate" class="w-full p-2 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition h-10">
+                                <button type="button" (click)="openCamera(newVariantForm.controls.image)" class="p-2 h-10 w-10 bg-white text-slate-700 rounded-lg hover:bg-slate-100" title="التقاط صورة"><i class="fa-solid fa-camera"></i></button>
+                                <label class="p-2 h-10 w-10 bg-white text-slate-700 rounded-lg hover:bg-slate-100 cursor-pointer text-center" title="تحميل صورة"><i class="fa-solid fa-upload"></i><input #variantImageUpload type="file" class="hidden" (change)="handleFileInputChange(variantImageUpload, newVariantForm.controls.image, 'newVariant')"></label>
+                                <input formControlName="image" placeholder="رابط الصورة (سيتم توليده تلقائيا)" class="w-full p-2 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition h-10">
                                 @if (uploadSuccessState()['newVariant']) {
                                     <i class="fa-solid fa-circle-check text-green-500 text-2xl animate-success-pop"></i>
                                 }
                             </div>
                         </div>
                         <div class="flex-[2] min-w-[120px]">
-                            <label class="font-bold text-xs text-slate-600">{{ 'admin.products.sizes' | translate }}</label>
-                            <input formControlName="sizes" [placeholder]="'admin.products.sizesPlaceholder' | translate" class="w-full p-2 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition h-10">
+                            <label class="font-bold text-xs text-slate-600">المقاسات (بينها فاصلة)</label>
+                            <input formControlName="sizes" placeholder="41, 42, 43" class="w-full p-2 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition h-10">
                         </div>
-                        <button type="button" (click)="addVariant()" class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 font-bold h-10">{{ 'admin.products.addVariant' | translate }}</button>
+                        <button type="button" (click)="addVariant()" class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 font-bold h-10">إضافة</button>
                     </div>
                     <!-- List of Variants -->
                     <div formArrayName="variants" class="mt-4 space-y-2">
@@ -323,7 +323,7 @@
                             <div class="flex items-center gap-4">
                                 <div class="w-8 h-8 rounded-md border" [style.background-color]="variantGroup.get('color')?.value"></div>
                                 <div class="relative">
-                                    <img [ngSrc]="variantGroup.get('image')?.value || 'https://via.placeholder.com/100?text=...'" alt="Variant image preview" width="48" height="48" class="w-12 h-12 object-cover rounded-md">
+                                    <img [src]="variantGroup.get('image')?.value || 'https://via.placeholder.com/100?text=...'" alt="Variant image preview" width="48" height="48" class="w-12 h-12 object-cover rounded-md">
                                     @if (generatingImageForVariantIndex() === i) {
                                     <div class="absolute inset-0 bg-black/50 flex items-center justify-center rounded-md">
                                         <i class="fa-solid fa-spinner fa-spin text-white"></i>
@@ -340,11 +340,11 @@
                                         [class.opacity-50]="!isGeminiConfigured()"
                                         [class.cursor-not-allowed]="!isGeminiConfigured()"
                                         [disabled]="!isGeminiConfigured()"
-                                        [title]="isGeminiConfigured() ? ('admin.products.generateImage' | translate) : (geminiConfigurationError() || '')">
-                                        {{ 'admin.products.generateImage' | translate }}
+                                        [title]="isGeminiConfigured() ? 'توليد صورة' : (geminiConfigurationError() || '')">
+                                        توليد صورة
                                     </button>
                                     }
-                                    <button type="button" (click)="editingVariantImageIndex.set(editingVariantImageIndex() === i ? null : i)" class="w-8 h-8 bg-slate-100 text-slate-600 rounded-lg hover:bg-slate-200" [title]="'admin.products.editImage' | translate">
+                                    <button type="button" (click)="editingVariantImageIndex.set(editingVariantImageIndex() === i ? null : i)" class="w-8 h-8 bg-slate-100 text-slate-600 rounded-lg hover:bg-slate-200" title="تعديل الصورة">
                                         <i class="fa-solid fa-camera"></i>
                                     </button>
                                     <button type="button" (click)="removeVariant(i)" class="w-8 h-8 bg-red-100 text-red-600 rounded-lg hover:bg-red-200"><i class="fa-solid fa-trash"></i></button>
@@ -353,11 +353,11 @@
                             
                             @if (editingVariantImageIndex() === i) {
                             <div class="mt-2 p-2 bg-slate-100 rounded-md animate-fade-in-up-sm">
-                                <label class="font-bold text-xs text-slate-600 mb-1 block">{{ 'admin.products.editImage' | translate }}</label>
+                                <label class="font-bold text-xs text-slate-600 mb-1 block">تعديل الصورة</label>
                                 <div class="flex items-center gap-2">
-                                    <button type="button" (click)="openCamera(variantGroup.get('image'))" class="p-2 h-10 w-10 bg-white text-slate-700 rounded-lg hover:bg-slate-100" [title]="'admin.products.captureImage' | translate"><i class="fa-solid fa-camera"></i></button>
-                                    <label class="p-2 h-10 w-10 bg-white text-slate-700 rounded-lg hover:bg-slate-100 cursor-pointer text-center" [title]="'admin.products.uploadImage' | translate"><i class="fa-solid fa-upload"></i><input #existingVariantImageUpload type="file" class="hidden" (change)="handleFileInputChange(existingVariantImageUpload, variantGroup.get('image'), 'existingVariant_' + i)"></label>
-                                    <input [formControl]="variantGroup.get('image')" [placeholder]="'admin.products.imageUrl' | translate" class="w-full p-2 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition h-10">
+                                    <button type="button" (click)="openCamera(variantGroup.get('image'))" class="p-2 h-10 w-10 bg-white text-slate-700 rounded-lg hover:bg-slate-100" title="التقاط صورة"><i class="fa-solid fa-camera"></i></button>
+                                    <label class="p-2 h-10 w-10 bg-white text-slate-700 rounded-lg hover:bg-slate-100 cursor-pointer text-center" title="تحميل صورة"><i class="fa-solid fa-upload"></i><input #existingVariantImageUpload type="file" class="hidden" (change)="handleFileInputChange(existingVariantImageUpload, variantGroup.get('image'), 'existingVariant_' + i)"></label>
+                                    <input [formControl]="variantGroup.get('image')" placeholder="أو أدخل رابط الصورة" class="w-full p-2 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition h-10">
                                     @if (uploadSuccessState()['existingVariant_' + i]) {
                                         <i class="fa-solid fa-circle-check text-green-500 text-2xl animate-success-pop"></i>
                                     }
@@ -371,21 +371,21 @@
 
                 <div class="flex gap-2 justify-end pt-4 border-t">
                     @if (isEditingProduct()) {
-                    <button type="button" (click)="cancelProductEdit()" class="px-6 py-2 rounded-lg bg-slate-200 hover:bg-slate-300 font-bold text-slate-800">{{ 'admin.products.cancel' | translate }}</button>
+                    <button type="button" (click)="cancelProductEdit()" class="px-6 py-2 rounded-lg bg-slate-200 hover:bg-slate-300 font-bold text-slate-800">إلغاء</button>
                     }
                     <button type="submit" class="px-6 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 font-bold">
-                    {{ (isEditingProduct() ? 'admin.products.saveChanges' : 'admin.products.addProduct') | translate }}
+                    {{ isEditingProduct() ? 'حفظ التغييرات' : 'إضافة المنتج' }}
                     </button>
                 </div>
                 </form>
             </div>
             <!-- Products List -->
             <div class="bg-slate-50 p-6 rounded-2xl shadow-lg">
-                <h2 class="text-xl font-bold mb-4 text-slate-800">{{ 'admin.products.currentProducts' | translate }}</h2>
+                <h2 class="text-xl font-bold mb-4 text-slate-800">المنتجات الحالية</h2>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     @for (p of products(); track p.id) {
                     <div class="flex items-center gap-4 p-3 bg-white rounded-lg shadow-sm border">
-                        <img [ngSrc]="p.image" [alt]="p.name" width="64" height="64" class="w-16 h-16 rounded-md object-cover flex-shrink-0">
+                        <img [src]="p.image" [alt]="p.name" width="64" height="64" class="w-16 h-16 rounded-md object-cover flex-shrink-0">
                         <div class="flex-1 min-w-0">
                         <p class="font-bold truncate text-slate-800">{{ p.name }}</p>
                         <p class="text-sm text-slate-500">{{ p.category }} - {{ p.price.toLocaleString() }} د.ج</p>
@@ -402,9 +402,9 @@
         }
         @case ('categories') {
             <div>
-            <h1 class="text-3xl font-black mb-6 text-slate-800 hidden md:block">{{ 'admin.categories.title' | translate }}</h1>
+            <h1 class="text-3xl font-black mb-6 text-slate-800 hidden md:block">إدارة التصنيفات</h1>
             <div class="bg-slate-50 p-6 rounded-2xl shadow-lg">
-                <h2 class="text-xl font-bold mb-4 text-slate-800">{{ 'admin.categories.current' | translate }}</h2>
+                <h2 class="text-xl font-bold mb-4 text-slate-800">التصنيفات الحالية</h2>
                 <div class="space-y-3">
                 @for(cat of categories(); track cat) {
                     <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm border">
@@ -416,7 +416,7 @@
                     </div>
                 }
                 @if(categories().length === 0) {
-                    <p class="text-center text-slate-400 py-8">{{ 'admin.categories.empty' | translate }}</p>
+                    <p class="text-center text-slate-400 py-8">لا توجد تصنيفات.</p>
                 }
                 </div>
             </div>
@@ -424,33 +424,33 @@
         }
         @case ('delivery') {
             <div>
-            <h1 class="text-3xl font-black mb-6 text-slate-800 hidden md:block">{{ 'admin.delivery.title' | translate }}</h1>
+            <h1 class="text-3xl font-black mb-6 text-slate-800 hidden md:block">إدارة شركات التوصيل</h1>
             <div class="bg-slate-50 p-6 rounded-2xl shadow-lg mb-8">
-                <h2 class="text-xl font-bold mb-4 text-slate-800">{{ (isEditingDelivery() ? 'admin.delivery.editTitle' : 'admin.delivery.addTitle') | translate }}</h2>
+                <h2 class="text-xl font-bold mb-4 text-slate-800">{{ isEditingDelivery() ? 'تعديل شركة' : 'إضافة شركة جديدة' }}</h2>
                 <form [formGroup]="deliveryForm" (ngSubmit)="saveDeliveryCompany()" class="space-y-4">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input formControlName="name" [placeholder]="'admin.delivery.name' | translate" class="w-full p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition">
-                    <input formControlName="fee" type="number" [placeholder]="'admin.delivery.fee' | translate" class="w-full p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition">
+                    <input formControlName="name" placeholder="اسم الشركة" class="w-full p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition">
+                    <input formControlName="fee" type="number" placeholder="رسوم التوصيل" class="w-full p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition">
                 </div>
                 <div class="flex gap-2 justify-end">
                     @if (isEditingDelivery()) {
-                    <button type="button" (click)="cancelDeliveryEdit()" class="px-6 py-2 rounded-lg bg-slate-200 hover:bg-slate-300 font-bold text-slate-800">{{ 'admin.delivery.cancel' | translate }}</button>
+                    <button type="button" (click)="cancelDeliveryEdit()" class="px-6 py-2 rounded-lg bg-slate-200 hover:bg-slate-300 font-bold text-slate-800">إلغاء</button>
                     }
                     <button type="submit" class="px-6 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 font-bold">
-                    {{ (isEditingDelivery() ? 'admin.delivery.saveChanges' : 'admin.delivery.addCompany') | translate }}
+                    {{ isEditingDelivery() ? 'حفظ التغييرات' : 'إضافة الشركة' }}
                     </button>
                 </div>
                 </form>
             </div>
 
             <div class="bg-slate-50 p-6 rounded-2xl shadow-lg">
-                <h2 class="text-xl font-bold mb-4 text-slate-800">{{ 'admin.delivery.current' | translate }}</h2>
+                <h2 class="text-xl font-bold mb-4 text-slate-800">الشركات الحالية</h2>
                 <div class="space-y-3">
                 @for(company of settings().deliveryCompanies; track company.id) {
                     <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm border">
                     <div>
                         <p class="font-bold text-slate-800">{{ company.name }}</p>
-                        <p class="text-sm text-slate-500">{{ 'admin.delivery.feeLabel' | translate }} {{ company.fee.toLocaleString() }} د.ج</p>
+                        <p class="text-sm text-slate-500">الرسوم: {{ company.fee.toLocaleString() }} د.ج</p>
                     </div>
                     <div class="flex gap-2">
                         <button (click)="editCompany(company)" class="w-10 h-10 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200"><i class="fa-solid fa-pen"></i></button>
@@ -459,7 +459,7 @@
                     </div>
                 }
                 @if (settings().deliveryCompanies.length === 0) {
-                    <p class="text-center text-slate-400 py-8">{{ 'admin.delivery.empty' | translate }}</p>
+                    <p class="text-center text-slate-400 py-8">لا توجد شركات توصيل مضافة حالياً.</p>
                 }
                 </div>
             </div>
@@ -467,54 +467,54 @@
         }
         @case ('notifications') {
             <div>
-                <h1 class="text-3xl font-black mb-6 text-slate-800 hidden md:block">{{ 'admin.notifications.title' | translate }}</h1>
+                <h1 class="text-3xl font-black mb-6 text-slate-800 hidden md:block">إعدادات الإشعارات</h1>
                 <form [formGroup]="notificationsForm" (ngSubmit)="saveNotifications()" class="bg-slate-50 p-6 rounded-2xl shadow-lg space-y-6">
                     <fieldset>
-                        <h2 class="text-xl font-bold mb-4 border-b pb-2 text-slate-800">{{ 'admin.notifications.newOrder' | translate }}</h2>
+                        <h2 class="text-xl font-bold mb-4 border-b pb-2 text-slate-800">إشعار الطلبات الجديدة</h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label class="font-bold text-sm text-slate-600">{{ 'admin.notifications.method' | translate }}</label>
+                                <label class="font-bold text-sm text-slate-600">طريقة الإرسال</label>
                                 <select formControlName="method" class="w-full mt-1 p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition">
-                                    <option value="none" selected>{{ 'admin.notifications.methodOptions.disabled' | translate }}</option>
-                                    <option value="whatsapp">{{ 'admin.notifications.methodOptions.whatsapp' | translate }}</option>
-                                    <option value="email">{{ 'admin.notifications.methodOptions.email' | translate }}</option>
-                                    <option value="messenger">{{ 'admin.notifications.methodOptions.messenger' | translate }}</option>
-                                    <option value="telegram">{{ 'admin.notifications.methodOptions.telegram' | translate }}</option>
-                                    <option value="webhook">{{ 'admin.notifications.methodOptions.webhook' | translate }}</option>
+                                    <option value="none" selected>معطل</option>
+                                    <option value="whatsapp">WhatsApp</option>
+                                    <option value="email">Email</option>
+                                    <option value="messenger">Messenger</option>
+                                    <option value="telegram">Telegram</option>
+                                    <option value="webhook">Webhook</option>
                                 </select>
                             </div>
                             <div>
                             @switch (notificationsForm.get('method')?.value) {
                                 @case ('whatsapp') {
-                                    <label class="font-bold text-sm text-slate-600">{{ 'admin.notifications.destPlaceholders.whatsapp' | translate }}</label>
-                                    <input formControlName="destination" class="w-full mt-1 p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition" [placeholder]="'admin.notifications.destPlaceholders.whatsappExample' | translate">
+                                    <label class="font-bold text-sm text-slate-600">رقم الهاتف (مع رمز الدولة)</label>
+                                    <input formControlName="destination" class="w-full mt-1 p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition" placeholder="+213xxxxxxxxx">
                                 }
                                 @case ('email') {
-                                    <label class="font-bold text-sm text-slate-600">{{ 'admin.notifications.destPlaceholders.email' | translate }}</label>
-                                    <input formControlName="destination" type="email" class="w-full mt-1 p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition" [placeholder]="'admin.notifications.destPlaceholders.emailExample' | translate">
+                                    <label class="font-bold text-sm text-slate-600">البريد الإلكتروني</label>
+                                    <input formControlName="destination" type="email" class="w-full mt-1 p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition" placeholder="admin@example.com">
                                 }
                                 @case ('messenger') {
-                                    <label class="font-bold text-sm text-slate-600">{{ 'admin.notifications.destPlaceholders.messenger' | translate }}</label>
-                                    <input formControlName="destination" class="w-full mt-1 p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition" [placeholder]="'admin.notifications.destPlaceholders.messengerExample' | translate">
+                                    <label class="font-bold text-sm text-slate-600">معرف صفحة الفيسبوك</label>
+                                    <input formControlName="destination" class="w-full mt-1 p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition" placeholder="YourPageID">
                                 }
                                 @case ('telegram') {
-                                    <label class="font-bold text-sm text-slate-600">{{ 'admin.notifications.destPlaceholders.telegram' | translate }}</label>
-                                    <input formControlName="destination" class="w-full mt-1 p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition" [placeholder]="'admin.notifications.destPlaceholders.telegramExample' | translate">
+                                    <label class="font-bold text-sm text-slate-600">معرف المستخدم/القناة</label>
+                                    <input formControlName="destination" class="w-full mt-1 p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition" placeholder="@yourusername">
                                 }
                                 @case ('webhook') {
-                                    <label class="font-bold text-sm text-slate-600">{{ 'admin.notifications.destPlaceholders.webhook' | translate }}</label>
-                                    <input formControlName="destination" type="url" class="w-full mt-1 p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition" [placeholder]="'admin.notifications.destPlaceholders.webhookExample' | translate">
+                                    <label class="font-bold text-sm text-slate-600">Webhook URL</label>
+                                    <input formControlName="destination" type="url" class="w-full mt-1 p-3 border bg-white border-slate-300 rounded-lg text-slate-800 focus:border-blue-500 outline-none transition" placeholder="https://api.example.com/order">
                                 }
                                 @default {
-                                    <label class="font-bold text-sm text-slate-600">{{ 'admin.notifications.destination' | translate }}</label>
-                                    <input class="w-full mt-1 p-3 border bg-slate-200 border-slate-300 text-slate-500 rounded-lg cursor-not-allowed" disabled [placeholder]="'admin.notifications.destPlaceholders.disabled' | translate">
+                                    <label class="font-bold text-sm text-slate-600">الوجهة</label>
+                                    <input class="w-full mt-1 p-3 border bg-slate-200 border-slate-300 text-slate-500 rounded-lg cursor-not-allowed" disabled placeholder="اختر طريقة الإرسال أولاً">
                                 }
                             }
                             </div>
                         </div>
                     </fieldset>
                     <div class="flex justify-end pt-4 border-t mt-4">
-                        <button type="submit" class="px-8 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 font-bold">{{ 'admin.notifications.saveButton' | translate }}</button>
+                        <button type="submit" class="px-8 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 font-bold">حفظ إعدادات الإشعارات</button>
                     </div>
                 </form>
             </div>
@@ -527,14 +527,14 @@
   @if (isCameraOpen()) {
     <div class="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
       <div class="bg-white rounded-2xl shadow-2xl p-4 w-full max-w-2xl text-center">
-        <h3 class="text-xl font-bold mb-4">{{ 'admin.camera.modalTitle' | translate }}</h3>
+        <h3 class="text-xl font-bold mb-4">التقاط صورة</h3>
         <video #videoPlayer autoplay playsinline class="w-full rounded-lg bg-slate-800 mb-4 h-96 object-cover"></video>
         <canvas #photoCanvas class="hidden"></canvas>
         <div class="flex gap-2 justify-center">
             <button (click)="captureImage()" class="px-6 py-3 rounded-lg bg-blue-600 text-white font-bold hover:bg-blue-700">
-                <i class="fa-solid fa-camera mr-2"></i> {{ 'admin.camera.capture' | translate }}
+                <i class="fa-solid fa-camera mr-2"></i> التقاط
             </button>
-            <button (click)="closeCamera()" class="px-6 py-3 rounded-lg bg-slate-200 text-slate-800 font-bold hover:bg-slate-300">{{ 'admin.camera.cancel' | translate }}</button>
+            <button (click)="closeCamera()" class="px-6 py-3 rounded-lg bg-slate-200 text-slate-800 font-bold hover:bg-slate-300">إلغاء</button>
         </div>
       </div>
     </div>

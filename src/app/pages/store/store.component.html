@@ -3,16 +3,16 @@
   <nav class="sticky top-0 z-40 backdrop-blur-xl bg-white/20 border-b border-white/10 shadow-sm px-4 sm:px-6 py-3 flex justify-between items-center">
     <div class="flex items-center gap-4">
       @if(settings().logo) {
-      <img [ngSrc]="settings().logo" width="150" height="48" alt="Store Logo" class="h-12 object-contain drop-shadow-lg" [class]="'logo-animate-' + settings().logoAnimation">
+      <img [src]="settings().logo" width="150" height="48" alt="Store Logo" class="h-12 object-contain drop-shadow-lg" [class]="'logo-animate-' + settings().logoAnimation">
       } @else {
       <h1 class="text-2xl font-black tracking-tighter" [style.color]="'white'">{{ settings().storeName }}</h1>
       }
     </div>
     <div class="flex items-center gap-2">
-      <a routerLink="/admin" class="relative cursor-pointer p-3 rounded-2xl bg-white/10 hover:bg-white/30 transition-all active:scale-90" [title]="'store.adminPanel' | translate">
+      <a routerLink="/admin" class="relative cursor-pointer p-3 rounded-2xl bg-white/10 hover:bg-white/30 transition-all active:scale-90" title="لوحة التحكم">
         <i class="fa-solid fa-wand-magic-sparkles text-2xl" style="color: white;"></i>
       </a>
-      <div (click)="showCart.set(true)" class="relative cursor-pointer p-3 rounded-2xl bg-white/10 hover:bg-white/30 transition-all active:scale-90" [title]="'store.shoppingCart' | translate">
+      <div (click)="showCart.set(true)" class="relative cursor-pointer p-3 rounded-2xl bg-white/10 hover:bg-white/30 transition-all active:scale-90" title="سلة التسوق">
         <i class="fa-solid fa-cart-shopping text-2xl" [style.color]="'white'"></i>
         @if (cartCount() > 0) {
         <span class="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] w-6 h-6 flex items-center justify-center rounded-full font-black border-2 border-white animate-bounce">{{ cartCount() }}</span>
@@ -32,7 +32,7 @@
     </h2>
     <div class="flex justify-center gap-2 sm:gap-4 flex-wrap max-w-4xl mx-auto">
       <button (click)="setFilter('all')" [class.bg-white]="activeFilter() === 'all'" [class.text-black]="activeFilter() === 'all'" [class.bg-black/40]="activeFilter() !== 'all'" [class.text-white]="activeFilter() !== 'all'" class="px-4 sm:px-6 py-3 rounded-2xl font-black backdrop-blur-xl transition-all border border-white/10 uppercase tracking-widest text-xs">
-        {{ 'store.filterAll' | translate }}
+        الكل
       </button>
       @for(cat of categories(); track cat) {
       <button (click)="setFilter(cat)" [class.bg-white]="activeFilter() === cat" [class.text-black]="activeFilter() === cat" [class.bg-black/40]="activeFilter() !== cat" [class.text-white]="activeFilter() !== cat" class="px-4 sm:px-6 py-3 rounded-2xl font-black backdrop-blur-xl transition-all border border-white/10 uppercase tracking-widest text-xs">
@@ -53,10 +53,9 @@
            [style.border-radius]="settings().cardBorderRadius"
            [style.box-shadow]="settings().cardShadow">
         <div class="h-48 sm:h-64 overflow-hidden relative bg-slate-200">
-          <img [ngSrc]="hoveredProductImage()[p.id] || p.image" 
+          <img [src]="hoveredProductImage()[p.id] || p.image" 
                [alt]="p.name"
                width="400" height="400"
-               [priority]="i < 4"
                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
 
           @if (p.variants && p.variants.length > 0) {
@@ -69,7 +68,7 @@
 
           <div class="product-overlay absolute inset-0 flex flex-col justify-end p-4 text-white">
             <button (click)="addToCart(p, $event)" class="w-full bg-white text-black font-black py-3 rounded-2xl shadow-xl hover:bg-blue-600 hover:text-white transition-all text-sm translate-y-20 group-hover:translate-y-0 duration-300">
-              {{ 'store.addToCart' | translate }}
+              إضافة للسلة
             </button>
           </div>
           <span class="absolute top-4 right-4 bg-white/95 backdrop-blur text-slate-900 text-[10px] font-black uppercase tracking-tighter px-3 py-1.5 rounded-xl shadow-2xl z-10">{{ p.category }}</span>
@@ -79,7 +78,7 @@
           <div class="flex justify-between items-center">
             <span class="text-xl font-black text-blue-600">
               {{ p.price.toLocaleString() }}
-              <small class="text-xs">{{ 'store.currency' | translate }}</small>
+              <small class="text-xs">د.ج</small>
             </span>
           </div>
         </div>
@@ -92,12 +91,12 @@
   @if (selectedProduct(); as product) {
     <div class="fixed inset-0 z-[120] bg-black/80 backdrop-blur-lg flex justify-center items-center p-4 animate-fade-in" (click)="closeProductModal()">
       <div class="bg-white w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl relative animate-scale-up" (click)="$event.stopPropagation()">
-        <button (click)="closeProductModal()" class="absolute top-4 right-4 bg-slate-100 w-12 h-12 rounded-2xl flex items-center justify-center z-10 hover:bg-slate-200 transition" [title]="'store.close' | translate">
+        <button (click)="closeProductModal()" class="absolute top-4 right-4 bg-slate-100 w-12 h-12 rounded-2xl flex items-center justify-center z-10 hover:bg-slate-200 transition" title="إغلاق">
           <i class="fa-solid fa-xmark text-xl"></i>
         </button>
         <div class="flex flex-col md:flex-row">
             <div class="md:w-1/2 h-64 md:h-auto relative bg-slate-200">
-                <img [ngSrc]="product.image" [alt]="product.name" width="400" height="400" class="w-full h-full object-cover">
+                <img [src]="product.image" [alt]="product.name" width="400" height="400" class="w-full h-full object-cover">
             </div>
             <div class="md:w-1/2 p-8 flex flex-col">
                 <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs font-bold uppercase self-start mb-4">{{ product.category }}</span>
@@ -106,7 +105,7 @@
 
                 @if(product.variants && product.variants.length > 0) {
                   <div class="mb-4">
-                        <h4 class="font-bold text-sm mb-2">{{ 'store.productColors' | translate }}</h4>
+                        <h4 class="font-bold text-sm mb-2">الألوان:</h4>
                         <div class="flex gap-2">
                           @for(variant of product.variants; track variant.color) {
                                 <div class="w-8 h-8 rounded-full border-2 border-slate-200" [style.background]="variant.color"></div>
@@ -115,34 +114,34 @@
                     </div>
                 }
 
-                <div class="text-3xl font-black text-blue-600 mb-6">{{ product.price.toLocaleString() }} <small class="text-sm">{{ 'store.currency' | translate }}</small></div>
+                <div class="text-3xl font-black text-blue-600 mb-6">{{ product.price.toLocaleString() }} <small class="text-sm">د.ج</small></div>
                 <div class="flex gap-2">
                   <button (click)="addToCart(product, $event); closeProductModal()" class="flex-1 bg-slate-900 text-white py-4 rounded-2xl font-black text-lg hover:bg-blue-600 transition">
-                    <i class="fa-solid fa-cart-plus mr-2"></i> {{ 'store.addToCartIcon' | translate }}
+                    <i class="fa-solid fa-cart-plus mr-2"></i> إضافة للسلة
                   </button>
                   <div class="relative">
-                     <button (click)="toggleShare($event)" [title]="'store.share' | translate" class="w-16 bg-slate-200 text-slate-800 py-4 rounded-2xl font-black text-lg hover:bg-slate-300 transition">
+                     <button (click)="toggleShare($event)" title="مشاركة المنتج" class="w-16 bg-slate-200 text-slate-800 py-4 rounded-2xl font-black text-lg hover:bg-slate-300 transition">
                         <i class="fa-solid fa-share-alt"></i>
                      </button>
                      @if(showShareOptions()) {
                       <div (click)="$event.stopPropagation()" class="absolute bottom-full right-0 mb-2 w-48 bg-white rounded-xl shadow-2xl border p-2 z-20 animate-fade-in-up-sm text-slate-800 font-sans">
                         <button (click)="shareTo('facebook', product)" class="w-full text-right flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 transition">
-                          <i class="fab fa-facebook-f w-5 text-blue-600"></i><span>{{ 'store.shareFacebook' | translate }}</span>
+                          <i class="fab fa-facebook-f w-5 text-blue-600"></i><span>فيسبوك</span>
                         </button>
                         <button (click)="shareTo('telegram', product)" class="w-full text-right flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 transition">
-                          <i class="fab fa-telegram w-5 text-sky-500"></i><span>{{ 'store.shareTelegram' | translate }}</span>
+                          <i class="fab fa-telegram w-5 text-sky-500"></i><span>تلغرام</span>
                         </button>
                         <button (click)="copyLink()" class="w-full text-right flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 transition">
                             @if(!isLinkCopied()) {
-                              <i class="fa-solid fa-link w-5 text-slate-500"></i><span>{{ 'store.copyLink' | translate }}</span>
+                              <i class="fa-solid fa-link w-5 text-slate-500"></i><span>نسخ الرابط</span>
                             } @else {
-                              <i class="fa-solid fa-check w-5 text-green-500"></i><span class="text-green-500">{{ 'store.linkCopied' | translate }}</span>
+                              <i class="fa-solid fa-check w-5 text-green-500"></i><span class="text-green-500">تم النسخ!</span>
                             }
                         </button>
                         @if(canShareNatively) {
                             <div class="border-t my-1"></div>
                             <button (click)="nativeShare(product)" class="w-full text-right flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-100 transition">
-                              <i class="fa-solid fa-ellipsis-h w-5 text-slate-500"></i><span>{{ 'store.shareMore' | translate }}</span>
+                              <i class="fa-solid fa-ellipsis-h w-5 text-slate-500"></i><span>المزيد...</span>
                             </button>
                         }
                       </div>
@@ -162,12 +161,12 @@
           
           <div class="flex justify-between items-center mb-6 pb-4 border-b border-white/20">
               <div class="flex items-center gap-4">
-                <button (click)="showCart.set(false)" class="text-white w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center transition" [title]="'cart.backToStore' | translate">
+                <button (click)="showCart.set(false)" class="text-white w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center transition" title="العودة للمتجر">
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
-                <h2 class="text-2xl font-black text-white">{{ 'cart.title' | translate }}</h2>
+                <h2 class="text-2xl font-black text-white">سلة التسوق</h2>
               </div>
-              <button (click)="showCart.set(false)" class="bg-white/10 text-white w-10 h-10 rounded-xl flex items-center justify-center hover:bg-white/20 transition" [title]="'store.close' | translate">
+              <button (click)="showCart.set(false)" class="bg-white/10 text-white w-10 h-10 rounded-xl flex items-center justify-center hover:bg-white/20 transition" title="إغلاق">
                   <i class="fa-solid fa-xmark"></i>
               </button>
           </div>
@@ -175,18 +174,18 @@
           @if (cart().length === 0) {
               <div class="flex-1 flex flex-col items-center justify-center text-slate-300">
                   <i class="fa-solid fa-shopping-basket text-7xl mb-4"></i>
-                  <p class="font-bold">{{ 'cart.emptyMessage' | translate }}</p>
+                  <p class="font-bold">سلتك فارغة</p>
               </div>
           } @else {
               <div class="flex-1 overflow-y-auto -mr-2 pr-2 space-y-4">
                   @for(item of cart(); track item.id) {
                       <div class="flex items-center gap-4 bg-white/20 p-3 rounded-2xl shadow-sm border border-white/10">
                           <div class="w-20 h-20 rounded-xl bg-white/10 flex-shrink-0">
-                            <img [ngSrc]="item.image" [alt]="item.name" width="80" height="80" class="w-20 h-20 rounded-xl object-cover">
+                            <img [src]="item.image" [alt]="item.name" width="80" height="80" class="w-20 h-20 rounded-xl object-cover">
                           </div>
                           <div class="flex-1">
                               <h4 class="font-bold text-md text-white">{{item.name}} (x{{item.quantity}})</h4>
-                              <p class="font-black text-sky-300">{{item.price.toLocaleString()}} {{ 'store.currency' | translate }}</p>
+                              <p class="font-black text-sky-300">{{item.price.toLocaleString()}} د.ج</p>
                           </div>
                           <button (click)="cartService.removeFromCart(item.id)" class="text-red-400 w-10 h-10 rounded-xl hover:bg-red-500/20 flex items-center justify-center transition">
                               <i class="fa-solid fa-trash"></i>
@@ -196,7 +195,7 @@
               </div>
               <div class="pt-6 border-t border-white/20 mt-4">
                   <button (click)="goToCheckout()" class="w-full bg-green-500 text-white py-4 rounded-2xl font-black text-lg hover:bg-green-600 transition shadow-lg">
-                      {{ 'cart.checkoutButton' | translate }} ({{ cartTotal().toLocaleString() }} {{ 'store.currency' | translate }})
+                      إتمام الطلب ({{ cartTotal().toLocaleString() }} د.ج)
                   </button>
               </div>
           }
